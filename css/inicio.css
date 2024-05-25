@@ -1,0 +1,16 @@
+body {
+    font-family: sans-serif;
+    margin: 20;
+    padding: 20;
+    background-color: #d4d4d4;
+  }
+  .logo img {
+    width: 150px;
+    height: auto;
+}
+
+
+.login img{
+  right: 150;
+  height: 150;
+}
