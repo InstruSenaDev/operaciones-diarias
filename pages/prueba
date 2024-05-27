@@ -1,0 +1,115 @@
+import React, { useState } from 'react';
+
+function Register() {
+  const [name, setName] = useState('');
+  const [documentNumber, setDocumentNumber] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [termsAgreed, setTermsAgreed] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Validate form data here
+    if (password !== confirmPassword) {
+      alert('Passwords do not match!');
+      return;
+    }
+    if (!termsAgreed) {
+      alert('Please agree to the terms and conditions.');
+      return;
+    }
+    // Submit form data to backend
+    console.log('Form submitted:', {
+      name,
+      documentNumber,
+      email,
+      password,
+      confirmPassword,
+    });
+  };
+
+  return (
+    <div className="container">
+      <div className="logo">
+        <img src="sena-logo.png" alt="SENA Logo" />
+      </div>
+      <div className="form-container">
+        <h2>Registrar</h2>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="name">Nombre:</label>
+            <input
+              type="text"
+              id="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="documentNumber">Numero de documento:</label>
+            <input
+              type="text"
+              id="documentNumber"
+              value={documentNumber}
+              onChange={(e) => setDocumentNumber(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="email">Correo:</label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="password">Contraseña:</label>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label htmlFor="confirmPassword">Confirmar contraseña:</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <input
+              type="checkbox"
+              id="terms"
+              checked={termsAgreed}
+              onChange={(e) => setTermsAgreed(e.target.checked)}
+            />
+            <label htmlFor="terms">Terminos y condiciones</label>
+          </div>
+          <button type="submit">Registrar</button>
+        </form>
+        <button type="button" onClick={() => {
+          // Handle login logic here
+        }}>
+          Iniciar sesion
+        </button>
+      </div>
+      <div className="illustration">
+        {/* Replace with your illustration */}
+        <img src="calculator-illustration.png" alt="Calculator Illustration" />
+      </div>
+    </div>
+  );
+}
+
+export default Register;
