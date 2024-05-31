@@ -96,3 +96,6 @@ button:hover {
   width:850px;
   left: 165px;
 }
+p {
+  text-decoration: underline;
+}

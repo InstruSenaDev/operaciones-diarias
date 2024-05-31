@@ -39,7 +39,7 @@ input[type="correo"] {
     padding: 8px;
     margin-top: 3px;
     background-color: #ECECEC;
-    border: 1px solid #ccc;
+    border: 1px solid #e7e4e4;
     border-radius: 3px;
 }
 
@@ -51,8 +51,8 @@ button {
     border-radius: 5px;
     cursor: pointer;
     position: absolute;
-    top: 540px;
-    left: 180px;
+    top: 440px;
+    left: 190px;
 }
 button:hover {
     background-color: #45a049;
