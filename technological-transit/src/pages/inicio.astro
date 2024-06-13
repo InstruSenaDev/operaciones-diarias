@@ -1,0 +1,39 @@
+---
+import Input from "../components/input.astro"
+import Botones from "../components/botones.astro"
+---
+
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Inicio Sesión</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  </head>
+  
+  <body>
+    <header class="flex justify-between items-center h-screen px-4">
+      <div class="logo">
+        <img src="../img/Logo_sena.png" class="Logosena object-contain h-20" alt="Logo">
+      </div>
+  
+      <div class="form-container w-full max-w-md">
+        <h2 class="text-2xl font-semibold text-center mb-4">Iniciar Sesión</h2>
+  
+        <form class="flex flex-col gap-4">
+         <Input placeholder="Correo" type="text"/>
+         <Input placeholder="password" type="text"/>
+        </form>
+  
+        <a href="#" class="text-blue-500 underline hover:text-blue-700 text-center mt-4 block">¿Olvide mi contraseña?</a>
+  
+       <button class="text-black bg-Verde">Iniciar sesón</button>
+  
+        <a href="#" class="text-blue-500 underline hover:text-blue-700 text-center mt-4 block">Crear Cuenta</a>
+      </div>
+    </header>
+  </body>
+  
+  </html>
