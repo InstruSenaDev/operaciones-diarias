@@ -1,0 +1,42 @@
+---
+import Botones from "../components/botones.astro"
+
+---
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Recuperar</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  </head>
+  
+  <body class="bg-white-100 flex items-center justify-center h-screen">
+    
+      <div class="flex flex-none">
+        <img src="../img/Logo_sena.png" alt="logo" class="object-top object-left-w-15 h-32" />
+
+      </div>
+      <div class="flex flex-box">
+        <img src="../img/img_recuperar.jpeg" alt="recuperar" class="object-top object-left-w-48 h-32" />
+
+      </div>
+    </header>
+    
+    <div class="form-container bg-gray p-8 rounded-lg shadow-lg w-96">
+      <h2 class="text-2xl font-bold mb-6 text-center">Recuperar Contraseña</h2>
+      <form>
+        <div class="mb-4">
+          <input type="password" id="correo" placeholder="Nueva Contraseña:" name="telefono" required class="w-full px-3 py-2 border rounded-lg">
+        </div>
+        <div class="mb-6">
+          <input type="password" id="contraseña" placeholder="Confirmar Contraseña:" name="contraseña" required class="w-full px-3 py-2 border rounded-lg">
+        </div>
+        
+        <Botones Text="Recuperar"/>
+        
+      </form>
+    </div>
+  </body>
+</html>
