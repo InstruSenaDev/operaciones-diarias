@@ -6,6 +6,7 @@ export default {
 	extend: {
 		colors: {
 		'Verde': '#A3E784',
+		'Gris': '#D8D7D7'
 	},
 	},
 	variants: {},

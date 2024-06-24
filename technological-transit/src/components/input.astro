@@ -1,14 +1,20 @@
 ---
 interface Props {
-placeholder: string;
-type:"text" | "email" | "password" | "number";
+    placeholder: string;
+    type: "text" | "email" | "password" | "number";
+    Text: String;
 }
 
-const { placeholder, type} = Astro.props;
 
+const { placeholder, type, Text } = Astro.props;
 ---
 
-<div class="flex items-center"> 
-<label></label>
-            <input type={type} id="correo" placeholder={placeholder} name="telefono" required class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500">
+
+<div class="space-y-2 w-full">
+    <label class="font-josefin-slab font-semibold text-black">{Text}</label>
+    <input
+        type={type}
+        placeholder={placeholder}
+        required
+        class="bg-Gris w-full min-h-11 mt-3 rounded-[4px] border border-[#D5D5D5] px-[20px] py-[7px] mb-2 text-[15px] transition-transform transform outline-none focus:translate-y-[-5px]">
 </div>
