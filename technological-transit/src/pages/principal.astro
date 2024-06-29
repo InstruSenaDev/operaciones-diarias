@@ -1,0 +1,155 @@
+---
+import Input from "../components/input.astro"
+import Botones from "../components/botones.astro"
+---
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Inicio Sesión</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+  </head>
+
+<style>
+
+.cubo1{
+display: flex;
+height: 953px;}
+
+
+
+.cubo2{background-color: #d2f3d9;}
+
+.img1{
+    width: 250px;
+}
+
+p {
+    font-size: 20px
+}
+
+.home{display: flex;
+    align-items: center;
+}
+
+.save{display: flex;
+align-items: center;}
+
+.espacio{
+    height: 505px;
+}
+
+.tuerca{display: flex;
+    align-items: center;}
+
+.campana{display: flex;
+align-items: center;}
+
+.cuenta{
+    background-color: #50B165;
+    height: 130px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.img2{
+    height: 60px;}
+
+.img3{
+    height: 60px;}
+
+.texto{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    align-items: baseline;
+}
+
+
+
+.cubo3{
+    width: 1665px;
+}
+
+.d1{
+    height: 150px;
+    display: flex;
+}
+
+.sena{
+width: 900px;
+display: flex;
+align-items: center;
+justify-content: space-around;}
+
+.SENA{width: 100px;
+height: 100px;}
+
+.d2{display: flex;
+flex-direction: column;
+align-items: center;}
+
+.text{
+width: 1000px;
+height: 400px;
+display: flex;
+align-items: center;
+justify-content: center;}
+
+.p{
+width: 500px;}
+
+.boton{}
+
+.inicio{border: 1px solid #50B165;
+background-color: #50B165;
+height: 50px;
+width: 300px;
+border-radius: 10px;}
+
+
+</style>
+
+
+
+<body>
+    <div class:list={['cubo1']}>
+        <div class:list={['cubo2']}> 
+            <div class:list={['logo']}><img class:list='img1' src="../img/logo.png"></img></div>
+            <div class:list={['home']}><img src="../img/home.png"></img><p>Home</p></div>
+            <div class:list={['save']}><img src="../img/tarjeta.png"></img><p>Guardado</p></div>
+            <div class:list={['espacio']}></div>
+            <div class:list={['tuerca']}><img src="../img/campa.png"><p>Configuraciones</p></img></div>
+            <div class:list={['campana']}><img src="../img/campa.png"></img><p>Notificaciones</p></div>
+            <div class:list={['cuenta']}>
+                <img class:list={['img2']} src="../img/persona.png"></img>
+                <div class:list={['texto']}>
+                <p>Alexander_</p>
+                <p>245301</p>
+                <p>UX y IU</p>
+                </div>
+                <img class:list={['img3']} src="../img/puerta.png"></img>
+            </div>
+            </div>
+    <div class:list={['cubo3']}>
+                <div class:list={['d1']}>
+                  <div class:list={['sena']}>
+                  <img class:list={['SENA']} src="../img/sena.png"></img>
+                  <h1>Libro de Registro Operaciones Diarias</h1>
+                  </div>
+                </div>  
+                <div class:list={['d2']}> 
+                    <div class:list={['text']}>
+                        <div class:list={['p']}><p>El objetivo de este documento es establecer un lineamiento claro para el inicio y desarrollo de las operaciones diarias, asegurando la eficiencia, organización y el cumplimiento de metas.</p></div>
+                    </div>
+                    <div class:list={['boton']}>
+                        <button class:list={['inicio']}><p>Crea tu primer libro de Registro</p></button>
+                    </div>   
+                </div>
+
+    </div>
+</body>
+</html>

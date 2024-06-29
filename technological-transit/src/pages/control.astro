@@ -1,0 +1,125 @@
+
+---
+import Botones from "../components/botones.astro";
+import Input from "../components/input.astro";
+
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>control</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  
+<div class="container mx-auto">
+    <div class="justify-center item-center"><h2 class="mb-4 text-2xl font-bold text-center"> Registro de operaciones</h2></div> 
+  
+    <div class="grid grid-cols-3 gap-4">
+      <div class="flex flex-col">
+        <label for="dia" class="block mb-2 text-sm font-medium"></label>
+    </label>
+    <input
+      type="number"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Dia:"
+    />
+      </div>
+      <div class="flex flex-col">
+        <label for="mes" class="block mb-2 text-sm font-medium"></label>
+    </label>
+    <input
+      type="number"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Mes:"
+    />
+      </div>
+      <div class="flex flex-col">
+        <label for="anio" class="block mb-2 text-sm font-medium"></label>
+    </label>
+    <input
+      type="number"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Año:"
+    />
+      </div>
+    </div>
+  
+    <div class="flex flex-col mb-4">
+      <label for="numeroRecibo" class="block mb-2 text-sm font-medium"></label>
+    </label>
+    <input
+      type="number"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Numero de recibo:"
+    />
+    </div>
+  
+    <h2>Ingresos</h2>
+  
+    <div class="grid grid-cols-2 gap-4">
+      <div class="flex flex-col">
+        <label for="ventasServicios" class="block mb-2 text-sm font-medium"></label>
+    </label>
+    <input
+      type="number"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Ventas o servicios:"
+    />
+      </div>
+      <div class="flex flex-col">
+        <label for="totalMes" class="block mb-2 text-sm font-medium"></label>
+    </label>
+    <input
+      type="number"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Total mes:"
+    />
+      </div>
+    </div>
+  
+    <h2>Egresos</h2>
+  
+    <div class="grid grid-cols-2 gap-4">
+      <div class="flex flex-col">
+        <label for="compras" class="block mb-2 text-sm font-medium"></label>
+    </label>
+    <input
+      type="number"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Compras:"
+    />
+      </div>
+      <div class="flex flex-col">
+        <label for="gastos" class="block mb-2 text-sm font-medium"></label>
+    </label>
+    <input
+      type="number"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Gastos"
+    />
+      </div>
+    </div>
+  
+    <div class="flex flex-col">
+      <label for="conceptoGasto" class="block mb-2 text-sm font-medium"></label>
+    </label>
+    <input
+      type="text"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Concepto de gasto:"
+    />
+    </div>
+    
+    <nav>
+        
+    </nav>
+      
+        
+
+
+    
