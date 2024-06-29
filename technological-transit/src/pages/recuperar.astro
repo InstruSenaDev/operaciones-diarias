@@ -16,11 +16,8 @@ import Botones from "../components/botones.astro";
 
   <body
     <div
-    class="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4"
+    class="flex flex-col items-center justify-center min-h-screen bg-white-100 p-4"
   >
-    <div
-      class="flex flex-col lg:flex-row bg-white rounded-lg shadow-md overflow-hidden max-w-5xl mx-auto"
-    >
       <div class="grid grid-cols-2 gap-3">
         <div>
           <img
@@ -29,9 +26,10 @@ import Botones from "../components/botones.astro";
             class=" w-96 h-75"
           />
         </div>
-        <div
-          class="flex flex-col items-center justify-center p-8 bg-white rounded-lg"
-        >
+        <form class=" form flex flex-col justify-center gap-4">
+          <form class=" form flex flex-col justify-center gap-10">
+            <div class="form-container bg-white p-10 rounded-lg shadow-lg" class="w-96"> 
+         </form>
           <h2 class="mb-4 text-2xl font-bold">Recuperación de contraseña</h2>
           <form class="space-y-4 w-full">
             <div class="mb-4">
@@ -39,7 +37,7 @@ import Botones from "../components/botones.astro";
               <input
                 id="contraseña"
                 type="text"
-                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1"
+                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1  bg-gray-200"
                 placeholder="Nueva Contraseña"
               />
             </div>
@@ -49,7 +47,7 @@ import Botones from "../components/botones.astro";
               <input
                 id="contrasena"
                 type="password"
-                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1"
+                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1  bg-gray-200"
                 placeholder="Confirmar Contraseña"
               />
             </div>
@@ -59,17 +57,18 @@ import Botones from "../components/botones.astro";
                 Recordar contraseña
               </label>
             </div>
-           <center> <button
+           <center>
+            <a href="/inicio.astro">
+             <button 
               type="submit"
               class="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:ring-green-500 focus:ring-1"
             >
-        
               Recuperar Contraseña
             </button></center>
-          </form>
-          <div class="mt-4 text-center">
-            <a href="" class="text-sm text-gray-500 hover:text-gray-700">
-              Inicio de Sesion
+
+          
+
+
             </a>
           </div>
         </div>
