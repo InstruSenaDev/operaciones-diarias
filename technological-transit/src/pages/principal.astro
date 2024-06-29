@@ -20,32 +20,76 @@ height: 953px;}
 
 
 
-.cubo2{background-color: #d2f3d9;}
+.cubo2{
+display: none;
+background-color: #d2f3d9;
+}
+
+.mostrarSide{
+    display: block;
+}
+
+.logo{
+    width: 240px;
+}
 
 .img1{
+    height: 130px;
     width: 250px;
 }
 
-p {
-    font-size: 20px
-}
 
 .home{display: flex;
+    height: 53px;
     align-items: center;
+    font-size: 20px;
+font-family: monospace;
+text-align: center;
+font-weight: bolder;
+margin-left: 15px;
 }
 
+.img6{height: 40px;
+    margin-right: 15px;}
+
 .save{display: flex;
-align-items: center;}
+align-items: center;
+font-size: 20px;
+font-family: monospace;
+text-align: center;
+font-weight: bolder;
+margin-left: 15px;}
+
+.img7{height: 40px;
+    margin-right: 15px;}
 
 .espacio{
-    height: 505px;
+    height: 527px;
 }
 
 .tuerca{display: flex;
-    align-items: center;}
+    align-items: center;
+    font-size: 20px;
+font-family: monospace;
+text-align: center;
+font-weight: bolder;
+margin-left: 15px;}
+
+.img4{height: 30px;
+    margin-right: 15px;}
 
 .campana{display: flex;
-align-items: center;}
+    height: 41px;
+align-items: center;
+font-size: 20px;
+font-family: monospace;
+text-align: center;
+font-weight: bolder;
+margin-left: 15px;}
+
+.img5{height: 30px;
+    margin-right: 15px;
+}
 
 .cuenta{
     background-color: #50B165;
@@ -56,16 +100,20 @@ align-items: center;}
 }
 
 .img2{
-    height: 60px;}
+    height: 50px;}
 
 .img3{
-    height: 60px;}
+    height: 30px;}
 
 .texto{
     display: flex;
     align-items: center;
     flex-direction: column;
     align-items: baseline;
+    font-size: 19px;
+font-family: monospace;
+text-align: center;
+font-weight: bolder;
 }
 
 
@@ -83,14 +131,19 @@ align-items: center;}
 width: 900px;
 display: flex;
 align-items: center;
-justify-content: space-around;}
+justify-content: space-around;
+font-size: 25px;
+font-family: monospace;
+text-align: center;
+color: #000;}
 
 .SENA{width: 100px;
 height: 100px;}
 
 .d2{display: flex;
 flex-direction: column;
-align-items: center;}
+align-items: center;
+}
 
 .text{
 width: 1000px;
@@ -100,30 +153,58 @@ align-items: center;
 justify-content: center;}
 
 .p{
-width: 500px;}
-
-.boton{}
+width: 700px;
+font-size: 25px;
+font-family: monospace;
+text-align: center;
+color: #000;
+}
 
 .inicio{border: 1px solid #50B165;
 background-color: #50B165;
-height: 50px;
-width: 300px;
-border-radius: 10px;}
+height: 60px;
+width: 370px;
+border-radius: 10px;
+font-size: 20px;
+font-family: monospace;
+color: #000;}
+
+.espacio1{height: 15px;}
 
 
 </style>
 
+<script>
 
+var clic = 1;
+const boton = document.querySelector(".myButton");
+const sideBar = document.querySelector("#div-mostrar");
+boton?.addEventListener("click", ()=>{
+    sideBar?.classList.toggle("mostrarSide");
+})
+/*
+function divAuto(){
+    if(clic==1){
+        document.getElementById('div-mostrar')!.style.height = '100px';
+        clic = clic + 1;
+        } else {
+            document.getElementById('div-mostrar')!.style.height = '0px';
+            clic =1;
+        }
+}
+*/
+</script>
 
 <body>
     <div class:list={['cubo1']}>
-        <div class:list={['cubo2']}> 
-            <div class:list={['logo']}><img class:list='img1' src="../img/logo.png"></img></div>
-            <div class:list={['home']}><img src="../img/home.png"></img><p>Home</p></div>
-            <div class:list={['save']}><img src="../img/tarjeta.png"></img><p>Guardado</p></div>
+        <div class:list={['cubo2']} id={'div-mostrar'}> 
+            <div class:list={['logo']}><img class:list={['img1']} src="../img/logo.png"></img></div>
+            <div class:list={['home']}><img class:list={['img6']} src="../img/home.png"></img><p>Home</p></div>
+            <div class:list={['save']}><img class:list={['img7']} src="../img/tarjeta.png"></img><p>Guardado</p></div>
             <div class:list={['espacio']}></div>
-            <div class:list={['tuerca']}><img src="../img/campa.png"><p>Configuraciones</p></img></div>
-            <div class:list={['campana']}><img src="../img/campa.png"></img><p>Notificaciones</p></div>
+            <div class:list={['tuerca']}><img class:list={['img4']} src="../img/tuerca.png"><p>ajustes</p></img></div>
+            <div class:list={['campana']}><img class:list={['img5']} src="../img/campa.png"></img><p>Notificaciones</p></div>
+            <div class:list={['espacio1']}></div>
             <div class:list={['cuenta']}>
                 <img class:list={['img2']} src="../img/persona.png"></img>
                 <div class:list={['texto']}>
@@ -137,7 +218,7 @@ border-radius: 10px;}
     <div class:list={['cubo3']}>
                 <div class:list={['d1']}>
                   <div class:list={['sena']}>
-                  <img class:list={['SENA']} src="../img/sena.png"></img>
+                  <button class:list={['myButton']}><img class:list={['SENA']} src="../img/Logo_sena.png"></img></button>
                   <h1>Libro de Registro Operaciones Diarias</h1>
                   </div>
                 </div>  
