@@ -12,24 +12,17 @@ import Botones from "../components/botones.astro"
       href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
       rel="stylesheet">
 </head>
-<div>
-  <button 
-    type="submit"
-    class="px-4 py-3 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:ring-green-500 focus:ring-1">
-    Acceder
-  </button>
-</div>
-<body class="flex flex-col items-center">
-    <div class="flex flex-col items-center h-[1055px] w-[1800px]">
-        <div class="flex items-center h-[150px] w-[1800px]">
-            <div class="flex justify-center w-[300px] h-full">
-                <img src="../img/logo2.png" alt="Logo" class="h-[150px]" />
-            </div>
-            <div class="flex justify-center w-[1450px] h-full">
-        
-            </div>
-            
-        </div>
+<header class="flex items-center justify-between p-4">
+    <div class="flex items-center">
+      <img src="../img/logo2.png"alt="LROD Logo" class="h-[1055px] w-[1800px]"/>
+      <div class="ml-2">
+      </div>
+    </div>
+    <button class="flex items-center bg-green-500 text-white px-4 py-2 rounded">
+      Acceder
+      <link href="../pages/inicio.astro"
+    </button>
+  </header>
         <div class="flex items-center justify-evenly h-[500px] w-[1800px]">
             <div class="flex flex-col items-center justify-center h-[500px] w-[600px] text-center">
                 <h2 class="font-mono text-7xl font-bold">Bienvenidos</h2>
@@ -42,7 +35,7 @@ import Botones from "../components/botones.astro"
             </div>
         </div>
         <div class="w-[1000px] h-[500px]"></div>
-        <div class="flex items-center justify-center h-[120px] w-[900px] text-center text-2xl">
+        <div class="flex items-center justify-center h-[120px] w-[900px] text-center text-xl">
             <p>¿Alguna vez te has preguntado cómo las empresas mantienen un registro detallado de todas sus transacciones financieras?</p>
         </div>
         <div class="w-[1000px] h-[2000px]"></div>
@@ -65,7 +58,7 @@ import Botones from "../components/botones.astro"
         <div class="flex items-center justify-center h-4/5">
             <img src="../img/2.png" alt="Tabla" class="h-[400px]" />
         </div>
-            <div class="flex items-center justify-center w-[1200px] text-center text-3xl">
+            <div class="flex items-center justify-center w-[1200px] text-center text-xl">
                 <p>¡No importa si eres un emprendedor que recién comienza o un profesional experimentado en contabilidad, está diseñada para ser una guía útil y accesible en el mundo del libro de operaciones diarias!</p>
             </div>
         </div>
