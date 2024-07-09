@@ -5,7 +5,7 @@ export default {
 	theme: {
 	extend: {
 		colors: {
-		'Verde': '#A3E784',
+		'Verde': '#a3e635',
 		'Gris': '#D8D7D7'
 	},
 	},
