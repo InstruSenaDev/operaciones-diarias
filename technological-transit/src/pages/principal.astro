@@ -49,7 +49,7 @@ import Botones from "../components/botones.astro"
   <main class="flex-1">
     <header class="flex items-center justify-between p-6">
       <button class="myButton">
-        <img class="w-24 h-24" src="../img/Logo_sena.png" alt="SENA">
+        <img class="w-10 "src="../img/menu.png" alt="SENA">
       </button>
       <h1 class="text-2xl font-mono font-bold">Libro de Registro Operaciones Diarias</h1>
     </header>
@@ -70,13 +70,18 @@ import Botones from "../components/botones.astro"
 
   <script>
     document.addEventListener("DOMContentLoaded", function() {
-      const boton = document.querySelector(".myButton");
-      const sideBar = document.querySelector("#div-mostrar");
-      boton.addEventListener("click", () => {
-        sideBar.classList.toggle("block");
-        sideBar.classList.toggle("hidden");
-      });
+        const boton = document.querySelector(".myButton");
+        const sideBar = document.querySelector("#div-mostrar");
+
+        if (boton && sideBar) {  // Verifica que ambos elementos existan
+            boton.addEventListener("click", () => {
+                sideBar.classList.toggle("block");
+                sideBar.classList.toggle("hidden");
+            });
+        } else {
+            console.error("No se encontró el botón o el sidebar.");
+        }
     });
-  </script>
+</script>
 </body>
 </html>

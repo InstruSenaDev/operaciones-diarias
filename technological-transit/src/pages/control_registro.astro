@@ -14,19 +14,63 @@ import Input from "../components/input.astro";
       rel="stylesheet"
     />
   </head>
+  <body class="flex h-screen">
+    <aside id="div-mostrar" class="hidden w-1/4 bg-green-200">
+      <div class="flex justify-center my-6">
+        <img class="w-60 h-32" src="../img/logo.png" alt="Logo">
+      </div>
+      <nav class="space-y-4">
+        <div class="flex items-center space-x-4 ml-4">
+          <img class="h-10" src="../img/home.png" alt="Home">
+          <p class="font-mono font-bold text-lg">Home</p>
+        </div>
+        <div class="flex items-center space-x-4 ml-4">
+          <img class="h-10" src="../img/tarjeta.png" alt="Guardado">
+          <p class="font-mono font-bold text-lg">Guardado</p>
+        </div>
+        <div class="flex-grow"></div>
+        <div class="flex items-center space-x-4 ml-4">
+          <img class="h-8" src="../img/tuerca.png" alt="Ajustes">
+          <p class="font-mono font-bold text-lg">Ajustes</p>
+        </div>
+        <div class="flex items-center space-x-4 ml-4">
+          <img class="h-8" src="../img/campa.png" alt="Notificaciones">
+          <p class="font-mono font-bold text-lg">Notificaciones</p>
+        </div>
+        <div class="flex-grow"></div>
+        <div class="flex justify-around items-center h-32 bg-green-600">
+          <img class="h-12" src="../img/persona.png" alt="Persona">
+          <div class="flex flex-col items-start font-mono font-bold text-lg">
+            <p>Alexander_</p>
+            <p>245301</p>
+            <p>UX y IU</p>
+          </div>
+          <img class="h-8" src="../img/puerta.png" alt="Puerta">
+        </div>
+      </nav>
+    </aside>
   <body class="bg-white">
     <div class="flex flex-col items-center">
       <div class="w-full bg-green-600 p-4 flex justify-between items-center">
-        <img src="../img/logo.png" class="w-20 ">
+        <img src="../img/perfil.png" class="w-20 ">
+        <main class="flex-1">
+          <header class="flex items-center justify-between p-6">
+            <button class="myButton">
+        <img src="../img/menu.png" class="w-10 ">
+       
         
       </div>
+      <form class=" form flex flex-col justify-center gap-4">
+        <form class=" form flex flex-col justify-center gap-10">
+          <div class="form-container bg-white p-10 rounded-lg shadow-lg" class="w-96"> 
+       </form>
       <div
-      class="flex flex-col items-center justify-center min-h-screen bg-white-100 p-4">
-        <div class="grid grid-cols-2 gap-6">
+      class="flex flex-col items-center justify-center min-h-screen bg-black-100 p-4">
+        <div class="grid grid-cols-1 gap-56">
 <div class="container mx-auto">
     <div class="justify-center item-center"><h2 class="mb-4 text-2xl font-bold text-center"> Registro de operaciones</h2></div> 
   
-    <div class="grid grid-cols-3 gap-4">
+    <div class="grid grid-cols-3 gap-20">
       <div class="flex flex-col">
         <label for="dia" class="block mb-2 text-sm font-medium"></label>
     </label>
@@ -127,4 +171,18 @@ import Input from "../components/input.astro";
         <div class="w-full md:w-1/2">
           </div>
       </div>
-      
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const boton = document.querySelector(".myButton");
+            const sideBar = document.querySelector("#div-mostrar");
+    
+            if (boton && sideBar) {  // Verifica que ambos elementos existan
+                boton.addEventListener("click", () => {
+                    sideBar.classList.toggle("block");
+                    sideBar.classList.toggle("hidden");
+                });
+            } else {
+                console.error("No se encontró el botón o el sidebar.");
+            }
+        });
+    </script>
