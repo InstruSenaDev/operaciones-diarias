@@ -100,17 +100,51 @@ import Botones from "../components/botones.astro";
               Registrarse
             </button>
            
-           <u> <a href="../pages/inicio.astro" class="text-sm text-black-600 hover:text-black-700">
+           <u> <a href="inicio" class="text-sm text-black-600 hover:text-black-700">
               Iniciar Sesión
             </a></u>
              </div>
-          
-
-
+    
 
           </form>
           
-          
-      </div></div></div></html>
+ 
+      </div>
+    </div>
+  </div>
+  
+   <script>
+const handleSubmit = (event) => {
+    event.preventDefault();  // "event" es posiblemente "undefined".
+
+    const newErrors = {};
+
+    // Asegúrate de que `formData` esté definido
+    const formData = {}; // Ejemplo de definición. Debes reemplazar esto con la definición real.
+    
+    const nombreError = validateNombre(formData.nombre);
+    if (nombreError) {
+        newErrors.nombre = nombreError;  // No se encuentra el nombre 'nombreError'.
+    }
+
+    // Asegúrate de que `setErrors` esté definido
+    const setErrors = (errors) => {
+        // Ejemplo de implementación. Debes reemplazar esto con la implementación real.
+        console.log(errors);
+    };
+
+    // Add validation checks for other fields and update newErrors
+
+    setErrors(newErrors);
+
+    // If no errors, proceed with form submission logic (e.g., API call)
+    if (Object.keys(newErrors).length === 0) {
+        // Submit form data
+    }
+};
+
+</script>
+
+  </html>
       
    
