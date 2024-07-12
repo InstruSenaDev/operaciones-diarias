@@ -3,11 +3,12 @@ import Input from "../components/input.astro";
 import Botones from "../components/botones.astro";
 ---
 
+
 <!doctype html>
 <html lang="es">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <title>Registro</title>
+    <title>Inscribirte</title>
     <link
       href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
       rel="stylesheet"
@@ -30,89 +31,62 @@ import Botones from "../components/botones.astro";
        </form>
          
          <div class="justify-center item-center"><h2 class="mb-4 text-2xl font-bold text-center">Inscribirte</h2></div> 
-         
-         <div class="mb-4">
-          <label for="Nombre" class="block mb-2 text-sm font-medium">
-            
-          </label>                     
-          <input
-            id="Nombre"
-            type="text"
-            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
-            placeholder="Nombre Completo:"
-          />
-        </div>
-        <div class="mb-4">
-          <label for="Numero de Documento" class="block mb-2 text-sm font-medium">
-            
-          </label>                     
-          <input
-            id="Documento"
-            type="text"
-            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
-            placeholder="Numero De Documento:"
-          />
-        </div>
-            <div class="mb-4">
-              <label for="usuario" class="block mb-2 text-sm font-medium">
-                
-              </label>
-              <input
-                id="correo"
-                type="text"
-                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
-                placeholder="Correo:"
-              />
-            </div>
-            <div class="mb-4">
-              <label for="contraseña" class="block mb-2 text-sm font-medium">
-               
-              </label>
-              <input
-                id="contraseña"
-                type="password"
-                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
-                placeholder="Contraseña:"
-              />
-            </div>
-            <div class="mb-4">
-              <label for="Repetir Contraseña" class="block mb-2 text-sm font-medium">
-                
-              </label>                     
-              <input
-                id="Repetir Contraseña"
-                type="password"
-                class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
-                placeholder="Confirmar Contraseña:"
-              />
-            </div>
-            <div class="flex flex-box w-full gap-4  ">
-              <input id="recordar" class="flex items-start" type="checkbox" />
-              <label for="recordar" class="text-sm font-medium">
-                Terminos y Condiciones 
-              </label>
-              
-            </div>
-            <div class="flex flex-col items-center justify-center">
-              <button 
-              type="submit"
-              class="px-2 py-2 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:ring-green-500 focus:ring-1 w-44 items-center"
-            >
-              Registrarse
-            </button>
-           
-           <u> <a href="inicio" class="text-sm text-black-600 hover:text-black-700">
-              Iniciar Sesión
-            </a></u>
-             </div>
-    
 
-          </form>
-          
- 
-      </div>
+ <form id="formu" class="space-y-4">
+    <div>
+      <label for="registroNombre" class="block text-sm font-medium text-black-700"></label>
+      <input type="text" name="nombre" id="registroNombre" placeholder="Nombres:" class="mt-1 block w-full px-4 py-2 border border-gray-300 bg-gray-200  rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+      <p id="nombreError" class="error-message"></p>
+      
     </div>
-  </div>
+
+    <div>
+      <label for="CorreoRegistro" class="block text-sm font-medium text-black-700"></label>
+      <input type="email" name="correo" id="CorreoRegistro" placeholder="Correo Electronico:" class="mt-1 block w-full px-4 py-2 border border-gray-300 bg-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+      <p id="correoError" class="error-message"></p>
+    </div>
+
+    <div>
+      <label for="contrasenaRegistro" class="block text-sm font-medium text-black-700"></label>
+      <input type="password" name="contrasena" id="contrasenaRegistro" placeholder="Contraseña:" class="mt-1 block w-full px-4 py-2 border border-gray-300  bg-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+      <span id="togglePasswordRegistro" class="bx bx-show cursor-pointer"></span>
+      <p id="contrasenaError" class="error-message"></p>
+    </div>
+
+    <div>
+      <label for="confirmarContrasena" class="block text-sm font-medium text-black-700"></label>
+      <input type="password" name="confirmarContrasena" id="confirmarContrasena"placeholder="Confirmar Contraseña:" class="mt-1 block w-full px-4 py-2 border border-gray-300 bg-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+      <span id="togglePasswordConfirmacion" class="bx bx-show cursor-pointer"></span>
+      <p id="confirmarContrasenaError" class="error-message"></p>
+    </div>
+
+    <div>
+      <label for="numeroDc" class="block text-sm font-medium text-black-700"></label>
+      <input type="text" name="numeroDc" id="numeroDc" placeholder="Numero de Documento" class="mt-1 block w-full px-4 py-2 border border-gray-300 bg-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm">
+      <p id="numeroDcError" class="error-message"></p>
+    </div>
+    <div class="flex flex-box w-full gap-4  ">
+      <input id="recordar" class="flex items-start" type="checkbox" />
+      <label for="recordar" class="text-sm font-medium">
+        Terminos y Condiciones 
+      </label>
+      
+    </div>
+    <div class="flex flex-col items-center justify-center">
+      <button 
+      type="submit"
+      class="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:ring-green-500 focus:ring-1 w-44 items-center"
+    >
+      Registrarse
+    </button>
+   
+   <u> <a href="inicio" class="text-sm text-black-600 hover:text-black-700">
+      Iniciar Sesión
+    </a></u>
+     </div>
+  </form>
+
+
   
   <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -220,5 +194,4 @@ if (togglePasswordRegistro) {
 
 
   </html>
-      
-   
+  
