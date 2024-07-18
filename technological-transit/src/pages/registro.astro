@@ -53,19 +53,7 @@ import Botones from "../components/botones.astro";
         <div class="flex flex-col items-center justify-center"></div>
         <a href="inicio"><button type="submit" class="w-full bg-green-500 text-white py-2 rounded-lg">Registrarse</button></a>
 
-        <div class="text-sm text-black-600 hover:text-black-700 items-center
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        ">
+        <div class="text-sm text-black-600 hover:text-black-700 justify-center">
             <a href="inicio" >
                        Iniciar Sesión
                       </a>
@@ -87,11 +75,8 @@ import Botones from "../components/botones.astro";
             const confirmarContrasenaError = document.getElementById('confirmarContrasenaError');
             const numeroDcError = document.getElementById('numeroDcError');
             const togglePasswordRegistro = document.getElementById('togglePasswordRegistro');
-
-            if (formu) {
-                formu.reset();
-            }
-
+    
+            // Función para mostrar u ocultar la contraseña
             if (togglePasswordRegistro) {
                 togglePasswordRegistro.addEventListener('click', function() {
                     if (contrasenaRegistro) {
@@ -100,7 +85,8 @@ import Botones from "../components/botones.astro";
                     }
                 });
             }
-
+    
+            // Validación del formulario al enviar
             if (formu) {
                 formu.addEventListener('submit', function(event) {
                     let valid = true;
@@ -109,14 +95,14 @@ import Botones from "../components/botones.astro";
                     if (contrasenaError) contrasenaError.textContent = '';
                     if (confirmarContrasenaError) confirmarContrasenaError.textContent = '';
                     if (numeroDcError) numeroDcError.textContent = '';
-
+    
                     // Validación del nombre
                     const nombreValue = nombre ? nombre.value.trim() : '';
                     if (!nombreValue || !/^[A-Za-z\s]+$/.test(nombreValue)) {
                         valid = false;
                         if (nombreError) nombreError.textContent = 'Ingrese un nombre válido.';
                     }
-
+    
                     // Validación del correo electrónico
                     const correoValue = correoRegistro ? correoRegistro.value.trim() : '';
                     if (!correoValue) {
@@ -126,31 +112,34 @@ import Botones from "../components/botones.astro";
                         valid = false;
                         if (correoError) correoError.textContent = 'El correo electrónico debe tener formato válido.';
                     }
-
+    
                     // Validación de la contraseña
                     const contrasenaValue = contrasenaRegistro ? contrasenaRegistro.value : '';
-                    if (!contrasenaValue || contrasenaValue.length < 8) {
+                    if (!contrasenaValue || contrasenaValue.length < 8 || !/[A-Z]/.test(contrasenaValue)) {
                         valid = false;
-                        if (contrasenaError) contrasenaError.textContent = 'La contraseña debe tener al menos 8 caracteres.';
-                    } else if (!/[A-Z]/.test(contrasenaValue)) {
-                        valid = false;
-                        if (contrasenaError) contrasenaError.textContent = 'La contraseña debe contener al menos una letra mayúscula.';
+                        if (!contrasenaValue) {
+                            if (contrasenaError) contrasenaError.textContent = 'La contraseña es requerida.';
+                        } else if (contrasenaValue.length < 8) {
+                            if (contrasenaError) contrasenaError.textContent = 'La contraseña debe tener al menos 8 caracteres.';
+                        } else if (!/[A-Z]/.test(contrasenaValue)) {
+                            if (contrasenaError) contrasenaError.textContent = 'La contraseña debe contener al menos una letra mayúscula.';
+                        }
                     }
-
+    
                     // Validación de la confirmación de contraseña
                     const confirmarContrasenaValue = confirmarContrasena ? confirmarContrasena.value : '';
                     if (contrasenaValue !== confirmarContrasenaValue) {
                         valid = false;
                         if (confirmarContrasenaError) confirmarContrasenaError.textContent = 'Las contraseñas no coinciden.';
                     }
-
+    
                     // Validación del número de documento
                     const numeroDcValue = numeroDc ? numeroDc.value.trim() : '';
                     if (!numeroDcValue || isNaN(parseInt(numeroDcValue)) || numeroDcValue.length !== 10) {
                         valid = false;
                         if (numeroDcError) numeroDcError.textContent = 'Ingrese un número de documento válido de 10 dígitos.';
                     }
-
+    
                     if (!valid) {
                         event.preventDefault();
                     } else {
@@ -159,7 +148,8 @@ import Botones from "../components/botones.astro";
                     }
                 });
             }
-
+    
+            // Función para resetear el formulario si se vuelve a cargar la página
             window.addEventListener('pageshow', function(event) {
                 if (event.persisted && formu) {
                     formu.reset();
@@ -167,6 +157,7 @@ import Botones from "../components/botones.astro";
             });
         });
     </script>
+    
 </body>
 </html>
 

@@ -3,13 +3,15 @@ export default {
 	'./src/*/.{astro,html,js,jsx,md,mdx,svelve,ts,tsx,vue}',
 	],
 	theme: {
-	extend: {
-		colors: {
-		'Verde': '#a3e635',
-		'Gris': '#D8D7D7'
-	},
-	},
-	variants: {},
-	plugins: [],
+		screens: {
+			'tablet': '640px',
+			// => @media (min-width: 640px) { ... }
+	  
+			'laptop': '1024px',
+			// => @media (min-width: 1024px) { ... }
+	  
+			'desktop': '1280px',
+			// => @media (min-width: 1280px) { ... }
+		  },
+	}
 }
-  }
