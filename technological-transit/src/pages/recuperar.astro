@@ -11,34 +11,7 @@ import Botones from "../components/botones.astro";
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>Recuperar contraseña</title>
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
-  <style>
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-color: rgba(0, 0, 0, 0.5);
-      z-index: 999;
-    }
-    .modal-content {
-      background-color: #fff;
-      max-width: 400px;
-      margin: 100px auto;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      text-align: center;
-    }
-    .close-modal {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      cursor: pointer;
-      color: #666;
-    }
-  </style>
+
 </head>
 
 <body>
@@ -48,14 +21,18 @@ import Botones from "../components/botones.astro";
         <img
           src="../img/img_recuperar.png"
           alt="Illustration of a person working on a laptop with analytics charts and money symbols"
-          class="w-96 h-75"
+          class="w-full h-full"
         />
       </div>
+      <form class=" form flex flex-col justify-center gap-4">
+        <form class=" form flex flex-col justify-center gap-10">
+          <div class="form-container bg-white p-20 rounded-lg shadow-lg" class="w-96"> 
+       </form>
       <div class="flex flex-col justify-center gap-4">
         <h2 class="mb-4 text-2xl font-bold">Recuperación de contraseña</h2>
         <form class="space-y-4 w-full" id="password-recovery-form">
           <div class="mb-4">
-            <label for="contraseña" class="block mb-2 text-sm font-medium">Nueva Contraseña</label>
+            <label for="contraseña" class="block mb-2 text-sm font-medium"></label>
             <input
               id="contraseña"
               type="password"
@@ -64,7 +41,7 @@ import Botones from "../components/botones.astro";
             />
           </div>
           <div class="mb-4">
-            <label for="contrasena" class="block mb-2 text-sm font-medium">Confirmar Contraseña</label>
+            <label for="contrasena" class="block mb-2 text-sm font-medium"></label>
             <input
               id="contrasena"
               type="password"
@@ -87,40 +64,6 @@ import Botones from "../components/botones.astro";
     </div>
   </div>
 
-  <div class="modal" id="modal">
-    <div class="modal-content">
-      <span class="close-modal" onclick="closeModal()">&times;</span>
-      <h2 class="text-xl font-bold mb-4">¡Contraseña recuperada!</h2>
-      <p>Tu contraseña ha sido cambiada correctamente.</p>
-      <div class="flex flex-col items-center">
-        <a href="inicio" ><button
-        type="submit"
-        class="px-2 py-2 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:ring-green-500 focus:ring-1 w-44 items-center"
-      >
-      Acceptar
-      
-      </button>
-     </a>
-    </div>
-  </div>
-
-  <script>
-    const passwordForm = document.getElementById('password-recovery-form');
-    const modal = document.getElementById('modal');
-
-
-    passwordForm.addEventListener('submit', function(event) {
-      event.preventDefault();
-      openModal();
-    });
-
-    function openModal() {
-      modal.style.display = 'block';
-    }
-
-    function closeModal() {
-      modal.style.display = 'none';
-    }
-  </script>
+ 
 </body>
 </html>
