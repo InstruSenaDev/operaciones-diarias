@@ -3,15 +3,12 @@ import Input from "../components/input.astro";
 import Botones from "../components/botones.astro";
 ---
 
-
-
 <!doctype html>
 <html lang="es">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <title>Recuperar contraseña</title>
   <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
-
 </head>
 
 <body>
@@ -19,17 +16,10 @@ import Botones from "../components/botones.astro";
     <div class="grid grid-cols-2 gap-3">
       <div>
         <img
-          src="../img/img_recuperar.png"
-          alt="Illustration of a person working on a laptop with analytics charts and money symbols"
-          class="w-full h-full"
-        />
+          src="../img/img_recuperar.png" class="w-full h-full"/>
       </div>
-      <form class=" form flex flex-col justify-center gap-4">
-        <form class=" form flex flex-col justify-center gap-10">
-          <div class="form-container bg-white p-20 rounded-lg shadow-lg" class="w-96"> 
-       </form>
-      <div class="flex flex-col justify-center gap-4">
-        <h2 class="mb-4 text-2xl font-bold">Recuperación de contraseña</h2>
+      <div class="form-container bg-white p-20 rounded-lg shadow-lg w-96">
+        <h2 class="mb-4 text-2xl font-bold">Recuperar contraseña</h2>
         <form class="space-y-4 w-full" id="password-recovery-form">
           <div class="mb-4">
             <label for="contraseña" class="block mb-2 text-sm font-medium"></label>
@@ -39,6 +29,7 @@ import Botones from "../components/botones.astro";
               class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
               placeholder="Nueva Contraseña"
             />
+            <span id="contraseña-error" class="text-red-500 text-sm"></span>
           </div>
           <div class="mb-4">
             <label for="contrasena" class="block mb-2 text-sm font-medium"></label>
@@ -48,22 +39,53 @@ import Botones from "../components/botones.astro";
               class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
               placeholder="Confirmar Contraseña"
             />
+            <span id="contrasena-error" class="text-red-500 text-sm"></span>
           </div>
           <div class="flex items-center mb-4">
             <input id="recordar" class="mr-2" type="checkbox" />
             <label for="recordar" class="text-sm font-medium">Recordar contraseña</label>
           </div>
           <button 
-              type="submit"
-              class="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:ring-green-500 focus:ring-1"
-            >
-              Recuperar Contraseña
-            </button>
+            type="submit"
+            class="px-4 py-2  text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:ring-green-500 focus:ring-1"
+          >
+            Recuperar Contraseña
+          </button>
         </form>
       </div>
     </div>
   </div>
 
- 
+  <script>
+    document.getElementById('password-recovery-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const contraseña = document.getElementById('contraseña').value;
+      const contrasena = document.getElementById('contrasena').value;
+      let valid = true;
+
+      // Restablecer mensajes de error
+      document.getElementById('contraseña-error').textContent = '';
+      document.getElementById('contrasena-error').textContent = '';
+
+      // Comprobar si las contraseñas coinciden
+      if (contraseña !== contrasena) {
+        document.getElementById('contrasena-error').textContent = 'Las contraseñas no coinciden.';
+        valid = false;
+      }
+
+      // Compruebe si la contraseña cumple con los criterios
+      const passwordCriteria = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+      if (!passwordCriteria.test(contraseña)) {
+        document.getElementById('contraseña-error').textContent = 'La contraseña debe tener al menos 8 caracteres, una letra mayúscula y un número.';
+        valid = false;
+      }
+
+      if (valid) {
+        // Realice el envío del formulario o su procesamiento posterior aquí
+        alert('Contraseña actualizada con éxito.');
+      }
+    });
+  </script>
 </body>
 </html>
