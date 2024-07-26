@@ -1,0 +1,48 @@
+---
+import Cuadro from "../components/cuadro.astro"
+---
+
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>home</title>
+  <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet">
+</head>
+
+<body class="bg-white">
+<div class="flex flex-col items-center">
+    <!-- Header -->
+    <div class="w-full bg-green-600 p-4 flex justify-between items-center">
+    <img src="../img/logo.png" class="w-20 ">
+    </div>
+
+
+    <div class="relative w-full ">
+      <img src="../img/home.jpg" class="w-full h-56 object-cover ">
+      <div class="absolute bottom-0 left-16 p-10">
+              <h1 class="text-8xl font-bold text-white">BIENVENIDOS</h1>
+              <p class="text-4xl text-white">Libro De Operaciones Diarias</p>
+             <a href="inicio"><button class="bg-green-600 text-white font-bold py-2 px-4 rounded-lg">Ingresar</button></a> 
+              
+              
+      </div>
+    </div>
+  
+      <div class="p-4 flex justify-between items-center">
+            <Cuadro/>
+          <div class=" mt-4 text-center text-lg text-black-700">
+              ¿Alguna vez te has preguntado cómo las empresas mantienen un registro detallado de todas sus transacciones financieras?
+        </div>
+          </div>
+        
+    <div class="p-4 flex justify-between items-center">"
+        <Cuadro/>
+      <div class=" mt-4 text-center text-lg text-black-700">
+        ¡No importa si eres un emprendedor que recién comienza o un profesional experimentado en contabilidad, 
+          está diseñada para ser una guía útil y accesible en el mundo del libro de operaciones diarias!</p>
+    </div>
+</body>
+</html>

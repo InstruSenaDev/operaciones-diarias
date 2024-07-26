@@ -1,0 +1,374 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>¿Cómo va mi negocio?</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .cubo {
+            border: 1px solid black;
+            height: 966px;
+        }
+
+        .cubo1 {
+            border: 1px solid #50B165;
+            height: 80px;
+            background-color: #50B165;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .boton {
+            width: 50px;
+            height: 50px;
+        }
+
+        .butun {
+            height: 50px;
+        }
+
+        .persona {
+            height: 50px;
+        }
+
+        .cubo2 {
+            display: flex;
+            height: 885px;
+        }
+
+        .d1 {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid #50B165;
+            height: 884px;
+            width: 290px;
+            background-color: #50B165;
+        }
+
+        .libros {
+            border: 1px solid white;
+            background-color: white;
+            height: 200px;
+            width: 250px;
+            margin: 10px;
+        }
+
+        .mostrarSide {
+            display: block;
+        }
+
+        .d2 {
+            display: flex;
+            align-items: center;
+            height: 883px;
+            width: 330px;
+        }
+
+        .pon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #50B165;
+            background-color: #50B165;
+            border-radius: 10px;
+            height: 50px;
+            width: 50px;
+            margin-left: 200px;
+            margin-bottom: 200px;
+        }
+
+        .flecha {
+            width: 30px;
+            height: 30px;
+        }
+
+        .d3 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 1248px;
+        }
+
+        .año {
+            margin-top: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #50B165;
+            background-color: #50B165;
+            color: white;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            width: 907px;
+            height: 40px;
+            font-size: 40px;
+            margin-bottom: 3px;
+        }
+
+        .como {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #50B165;
+            background-color: #50B165;
+            color: white;
+            width: 907px;
+            height: 40px;
+            font-size: 31px;
+        }
+
+        .total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 907px;
+            font-size: 31px;
+        }
+
+        .uno,
+        .dos,
+        .tres,
+        .S {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #50B165;
+            background-color: #50B165;
+            color: white;
+        }
+
+        .uno,
+        .tres {
+            border-left: 1px solid white;
+        }
+
+        .uno {
+            width: 220px;
+            height: 40px;
+            font-size: 15px;
+        }
+
+        .dos {
+            width: 186px;
+            height: 40px;
+        }
+
+        .tres {
+            width: 220px;
+            height: 40px;
+            font-size: 15px;
+        }
+
+        .S {
+            width: 907px;
+            height: 40px;
+            font-size: 30px;
+            border-bottom-right-radius: 10px;
+            border-bottom-left-radius: 10px;
+            margin-top: 3px;
+        }
+
+        .cabeza {
+            border: 4px solid #29793a;
+            width: 155px;
+        }
+
+        .cuerpo {
+            border: 4px solid #50B165;
+        }
+
+        .cuenta {
+            width: 400px;
+            height: 300px;
+            overflow: hidden;
+            margin-top: 500px;
+        }
+
+        .cuenta iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cubo">
+        <div class="cubo1">
+            <button class="boton"><img src="../img/boton.PNG" class="butun"></button>
+            <p>Recomendaciones</p>
+            <div class="cuenta">
+                <iframe src="../perfil" frameborder="0"></iframe>
+            </div>
+        </div>
+        <div class="cubo2">
+            <div class="d1" id="ostia">
+                <div class="libros"></div>
+                <div class="libros"></div>
+                <div class="libros"></div>
+                <div class="libros"></div>
+            </div>
+            <div class="d2">
+                <button class="pon"><img src="../img/flecha.PNG" class="flecha"></button>
+            </div>
+            <div class="d3">
+                <div class="año" contenteditable="true">año</div>
+                <div class="como">¿Cómo va mi negocio?</div>
+                <table>
+                    <tr>
+                        <th class="cabeza">MES</th>
+                        <th class="cabeza">INGRESOS</th>
+                        <th class="cabeza">COMPRAS</th>
+                        <th class="cabeza">GASTOS</th>
+                        <th class="cabeza">UTILIDAD</th>
+                    </tr>
+                    <tr>
+                        <td class="cuerpo">ENERO</td>
+                        <td class="cuerpo"><input type="number" class="monto ingresos"></td>
+                        <td class="cuerpo"><input type="number" class="monto compras"></td>
+                        <td class="cuerpo"><input type="number" class="monto gastos"></td>
+                        <td class="cuerpo"><input type="number" class="monto utilidad"></td>
+                    </tr>
+                    <tr>
+                        <td class="cuerpo">FEBRERO</td>
+                        <td class="cuerpo"><input type="number" class="monto ingresos"></td>
+                        <td class="cuerpo"><input type="number" class="monto compras"></td>
+                        <td class="cuerpo"><input type="number" class="monto gastos"></td>
+                        <td class="cuerpo"><input type="number" class="monto utilidad"></td>
+                    </tr>
+                    <tr>
+                        <td class="cuerpo">MARZO</td>
+                        <td class="cuerpo"><input type="number" class="monto ingresos"></td>
+                        <td class="cuerpo"><input type="number" class="monto compras"></td>
+                        <td class="cuerpo"><input type="number" class="monto gastos"></td>
+                        <td class="cuerpo"><input type="number" class="monto utilidad"></td>
+                    </tr>
+                    <tr>
+                        <td class="cuerpo">ABRIL</td>
+                        <td class="cuerpo"><input type="number" class="monto ingresos"></td>
+                        <td class="cuerpo"><input type="number" class="monto compras"></td>
+                        <td class="cuerpo"><input type="number" class="monto gastos"></td>
+                        <td class="cuerpo"><input type="number" class="monto utilidad"></td>
+                    </tr>
+                    <tr>
+                        <td class="cuerpo">MAYO</td>
+                        <td class="cuerpo"><input type="number" class="monto ingresos"></td>
+                        <td class="cuerpo"><input type="number" class="monto compras"></td>
+                        <td class="cuerpo"><input type="number" class="monto gastos"></td>
+                        <td class="cuerpo"><input type="number" class="monto utilidad"></td>
+                    </tr>
+                    <tr>
+                        <td class="cuerpo">JUNIO</td>
+                        <td class="cuerpo"><input type="number" class="monto ingresos"></td>
+                        <td class="cuerpo"><input
+
+ type="number" class="monto compras"></td>
+                        <td class="cuerpo"><input type="number" class="monto gastos"></td>
+                        <td class="cuerpo"><input type="number" class="monto utilidad"></td>
+                    </tr>
+                    <tr>
+                        <td class="cuerpo">JULIO</td>
+                        <td class="cuerpo"><input type="number" class="monto ingresos"></td>
+                        <td class="cuerpo"><input type="number" class="monto compras"></td>
+                        <td class="cuerpo"><input type="number" class="monto gastos"></td>
+                        <td class="cuerpo"><input type="number" class="monto utilidad"></td>
+                    </tr>
+                    <tr>
+                        <td class="cuerpo">AGOSTO</td>
+                        <td class="cuerpo"><input type="number" class="monto ingresos"></td>
+                        <td class="cuerpo"><input type="number" class="monto compras"></td>
+                        <td class="cuerpo"><input type="number" class="monto gastos"></td>
+                        <td class="cuerpo"><input type="number" class="monto utilidad"></td>
+                    </tr>
+                    <tr>
+                        <td class="cuerpo">SEPTIEMBRE</td>
+                        <td class="cuerpo"><input type="number" class="monto ingresos"></td>
+                        <td class="cuerpo"><input type="number" class="monto compras"></td>
+                        <td class="cuerpo"><input type="number" class="monto gastos"></td>
+                        <td class="cuerpo"><input type="number" class="monto utilidad"></td>
+                    </tr>
+                    <tr>
+                        <td class="cuerpo">OCTUBRE</td>
+                        <td class="cuerpo"><input type="number" class="monto ingresos"></td>
+                        <td class="cuerpo"><input type="number" class="monto compras"></td>
+                        <td class="cuerpo"><input type="number" class="monto gastos"></td>
+                        <td class="cuerpo"><input type="number" class="monto utilidad"></td>
+                    </tr>
+                    <tr>
+                        <td class="cuerpo">NOVIEMBRE</td>
+                        <td class="cuerpo"><input type="number" class="monto ingresos"></td>
+                        <td class="cuerpo"><input type="number" class="monto compras"></td>
+                        <td class="cuerpo"><input type="number" class="monto gastos"></td>
+                        <td class="cuerpo"><input type="number" class="monto utilidad"></td>
+                    </tr>
+                    <tr>
+                        <td class="cuerpo">DICIEMBRE</td>
+                        <td class="cuerpo"><input type="number" class="monto ingresos"></td>
+                        <td class="cuerpo"><input type="number" class="monto compras"></td>
+                        <td class="cuerpo"><input type="number" class="monto gastos"></td>
+                        <td class="cuerpo"><input type="number" class="monto utilidad"></td>
+                    </tr>
+                </table>
+                <div class="total">
+                    <div class="uno">TOTAL INGRESOS:</div>
+                    <div class="dos" id="totalIngresos">0</div>
+                </div>
+                <div class="total">
+                    <div class="uno">TOTAL COMPRAS:</div>
+                    <div class="dos" id="totalCompras">0</div>
+                </div>
+                <div class="total">
+                    <div class="uno">TOTAL GASTOS:</div>
+                    <div class="dos" id="totalGastos">0</div>
+                </div>
+                <div class="total">
+                    <div class="tres">TOTAL UTILIDAD:</div>
+                    <div class="dos" id="totalUtilidad">0</div>
+                </div>
+                <div class="S">Siguiente</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.monto').forEach(input => {
+            input.addEventListener('input', updateTotals);
+        });
+
+        function updateTotals() {
+            let totalIngresos = 0;
+            let totalCompras = 0;
+            let totalGastos = 0;
+            let totalUtilidad = 0;
+
+            document.querySelectorAll('.monto.ingresos').forEach(input => {
+                totalIngresos += parseFloat(input.value) || 0;
+            });
+            document.querySelectorAll('.monto.compras').forEach(input => {
+                totalCompras += parseFloat(input.value) || 0;
+            });
+            document.querySelectorAll('.monto.gastos').forEach(input => {
+                totalGastos += parseFloat(input.value) || 0;
+            });
+            document.querySelectorAll('.monto.utilidad').forEach(input => {
+                totalUtilidad += parseFloat(input.value) || 0;
+            });
+
+            document.getElementById('totalIngresos').textContent = totalIngresos;
+            document.getElementById('totalCompras').textContent = totalCompras;
+            document.getElementById('totalGastos').textContent = totalGastos;
+            document.getElementById('totalUtilidad').textContent = totalUtilidad;
+        }
+
+        document.querySelector('.pon').addEventListener('click', () => {
+            document.getElementById('ostia').classList.toggle('mostrarSide');
+        });
+    </script>
+</body>
+
+</html>
+```
