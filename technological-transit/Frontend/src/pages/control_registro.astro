@@ -1,0 +1,181 @@
+---
+import Botones from "../components/botones.astro";
+import Input from "../components/input.astro";
+
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>control</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="flex h-screen">
+    <aside id="div-mostrar" class="hidden w-25 bg-green-200">
+      <div class="flex justify-center my-6">
+        <img class="w-60 h-32" src="../img/logo.png" alt="Logo">
+      </div>
+      <nav class="space-y-4">
+        <div class="flex items-center space-x-4 ml-4">
+         <button> <img class="h-10" src="../img/icono_home.png" alt="Home"></button>
+          <p class="font-mono font-bold text-lg">Home</p>
+        </div>
+        <div class="flex items-center space-x-4 ml-4">
+         <button> <img class="h-10" src="../img/icono_guardado.png" alt="Guardado"></button
+          <p class="font-mono font-bold text-lg">Guardado</p>
+        </div>
+        <div class="flex-grow"></div>
+        <div class="flex items-center space-x-4 ml-4">
+          <button><img class="h-8" src="../img/tuerca.png" alt="Ajustes"></button>
+          <p class="font-mono font-bold text-lg">Ajustes</p>
+        </div>
+        <div class="flex items-center space-x-4 ml-4">
+        <button><img class="h-8" src="../img/campa.png" alt="Notificaciones"></button>
+          <p class="font-mono font-bold text-lg">Notificaciones</p>
+        </div>
+      </nav>
+    </aside>
+  <body class="bg-white">
+    <div class="flex flex-col items-center">
+      <div class="w-full bg-green-600 p-4 flex justify-between items-center">
+
+
+        
+        <main class="flex-auto">
+          <header class="flex items-center justify-between p-6">
+            <button class="myButton">
+        <img src="../img/menu.png" class="w-10 ">
+            
+       
+        
+      </div>
+      <form class=" form flex flex-col justify-center gap-4">
+        <form class=" form flex flex-col justify-center gap-10">
+          <div class="form-container bg-white p-10 rounded-lg shadow-lg" class="w-96"> 
+       </form>
+      <div
+      class="flex flex-col items-center justify-center min-h-screen bg-black-100 p-4">
+        <div class="grid grid-cols-1 gap-56">
+<div class="container mx-auto">
+    <div class="justify-center item-center"><h2 class="mb-4 text-2xl font-bold text-center"> Registro de operaciones</h2></div> 
+  
+    <div class="grid grid-cols-3 gap-20">
+      <div class="flex flex-col">
+        <label for="dia" class="block mb-2 text-sm font-medium"></label>
+    </label>
+    <input
+      type="number"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Dia:"
+    />
+      </div>
+      <div class="flex flex-col">
+        <label for="mes" class="block mb-2 text-sm font-medium"></label>
+    </label>
+    <input
+      type="number"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Mes:"
+    />
+      </div>
+      <div class="flex flex-col">
+        <label for="anio" class="block mb-2 text-sm font-medium"></label>
+    </label>
+    <input
+      type="number"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Año:"
+    />
+      </div>
+    </div>
+  
+    <div class="flex flex-col mb-4">
+      <label for="numeroRecibo" class="block mb-2 text-sm font-medium"></label>
+    </label>
+    <input
+      type="number"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Numero de recibo:"
+    />
+    </div>
+  
+    <h2>Ingresos</h2>
+  
+    <div class="grid grid-cols-2 gap-4">
+      <div class="flex flex-col">
+        <label for="ventasServicios" class="block mb-2 text-sm font-medium"></label>
+    </label>
+    <input
+      type="number"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Ventas o servicios:"
+    />
+      </div>
+      <div class="flex flex-col">
+        <label for="totalMes" class="block mb-2 text-sm font-medium"></label>
+    </label>
+    <input
+      type="number"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Total mes:"
+    />
+      </div>
+    </div>
+  
+    <h2>Egresos</h2>
+  
+    <div class="grid grid-cols-2 gap-4">
+      <div class="flex flex-col">
+        <label for="compras" class="block mb-2 text-sm font-medium"></label>
+    </label>
+    <input
+      type="number"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Compras:"
+    />
+      </div>
+      <div class="flex flex-col">
+        <label for="gastos" class="block mb-2 text-sm font-medium"></label>
+    </label>
+    <input
+      type="number"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Gastos"
+    />
+      </div>
+    </div>
+  
+    <div class="flex flex-col">
+      <label for="conceptoGasto" class="block mb-2 text-sm font-medium"></label>
+    </label>
+    <input
+      type="text"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Concepto de gasto:"
+    />
+    </div>
+    <div class="flex flex-col md:flex-row">
+        <div class="w-full md:w-1/2">
+          </div>
+        <div class="w-full md:w-1/2">
+          </div>
+      </div>
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const boton = document.querySelector(".myButton");
+            const sideBar = document.querySelector("#div-mostrar");
+    
+            if (boton && sideBar) {  // Verifica que ambos elementos existan
+                boton.addEventListener("click", () => {
+                    sideBar.classList.toggle("block");
+                    sideBar.classList.toggle("hidden");
+                });
+            } else {
+                console.error("No se encontró el botón o el sidebar.");
+            }
+        });
+    </script>
