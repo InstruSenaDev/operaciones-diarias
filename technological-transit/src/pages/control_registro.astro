@@ -2,6 +2,7 @@
 import Botones from "../components/botones.astro";
 import Input from "../components/input.astro";
 import Menu from "../components/menu.astro"
+import PerfilMenu from "../components/perfilMenu.astro";
 ---
 <!doctype html>
 <html lang="es">
@@ -15,16 +16,15 @@ import Menu from "../components/menu.astro"
   </head>
   <Menu/>
   <body>
-    <div class="border-b-3 border-l border-r border-gray-300"></div>
-
   <div class="w-full bg-green-500 p-4 flex justify-between items-center">
     <img src="../img/logo.png" class="w-10 ">
-    <button><img src="../img/perfil.png" class="w-20 "></button>
+    <button><img src="../img/perfil.png" class="w-20 ">Alexander</button>
+    
     </div>
 <div class="container mx-auto">
-<p class="text-4xl text-black ">Registro de Operaciones</p>
+<p class="text-4xl text-black flex justify-center py-14">Registro de Operaciones</p>
 
-    <div class="form-container bg-white p-32 rounded-lg shadow-lg w-full">
+    <div class="form-container bg-white p-52 rounded-lg shadow-lg w-full py-40">
     <div class="grid grid-cols-3 gap-4">
       <div class="flex flex-col">
         <label for="dia" class="block mb-4 text-sm font-medium"></label>
@@ -121,12 +121,14 @@ import Menu from "../components/menu.astro"
     />
     </div>
   </div>
-  <div class="flex justify-start">
+  <div class="flex justify-end py-10">
     <button class="bg-green-500 text-white font-bold py-2 px-4 rounded shadow-md">
       Registrar
     </button>
   </div>
   </a>
+  <body class="bg-gray-100">
+    <PerfilMenu />
   </body>
     </html>
     
