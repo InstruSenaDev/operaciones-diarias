@@ -16,7 +16,7 @@
             <h2 class="mb-6 text-2xl font-bold text-center">Inscribirte</h2>
             <form id="formu" class="space-y-4">
                 <div>
-                    <label for="registroNombre" class="block text-sm font-medium text-gray-700">Nombre</label>
+                    <label for="registroNombre" class="block text-sm font-medium text-gray-700"></label>
                     <input
                             type="text"
                             name="nombre"
@@ -27,7 +27,7 @@
                     <p id="nombreError" class="text-red-500 text-xs mt-1"></p>
                 </div>
                 <div>
-                    <label for="CorreoRegistro" class="block text-sm font-medium text-gray-700">Correo Electrónico</label>
+                    <label for="CorreoRegistro" class="block text-sm font-medium text-gray-700"></label>
                     <input
                             type="email"
                             name="correo"
@@ -38,7 +38,7 @@
                     <p id="correoError" class="text-red-500 text-xs mt-1"></p>
                 </div>
                 <div>
-                    <label for="contrasenaRegistro" class="block text-sm font-medium text-gray-700">Contraseña</label>
+                    <label for="contrasenaRegistro" class="block text-sm font-medium text-gray-700"></label>
                     <div class="relative">
                         <input
                                 type="password"
@@ -52,7 +52,7 @@
                     <p id="contrasenaError" class="text-red-500 text-xs mt-1"></p>
                 </div>
                 <div>
-                    <label for="confirmarContrasena" class="block text-sm font-medium text-gray-700">Confirmar Contraseña</label>
+                    <label for="confirmarContrasena" class="block text-sm font-medium text-gray-700"></label>
                     <div class="relative">
                         <input
                                 type="password"
@@ -66,7 +66,7 @@
                     <p id="confirmarContrasenaError" class="text-red-500 text-xs mt-1"></p>
                 </div>
                 <div>
-                    <label for="numeroDc" class="block text-sm font-medium text-gray-700">Número de Documento</label>
+                    <label for="numeroDc" class="block text-sm font-medium text-gray-700"></label>
                     <input
                             type="text"
                             name="numeroDc"
@@ -97,103 +97,101 @@
 </div>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', function() {
       const formu = document.getElementById('formu');
       const nombre = document.getElementById('registroNombre');
       const correoRegistro = document.getElementById('CorreoRegistro');
       const contrasenaRegistro = document.getElementById('contrasenaRegistro');
       const confirmarContrasena = document.getElementById('confirmarContrasena');
       const numeroDc = document.getElementById('numeroDc');
-
-      
       const nombreError = document.getElementById('nombreError');
       const correoError = document.getElementById('correoError');
       const contrasenaError = document.getElementById('contrasenaError');
       const confirmarContrasenaError = document.getElementById('confirmarContrasenaError');
       const numeroDcError = document.getElementById('numeroDcError');
       const togglePasswordRegistro = document.getElementById('togglePasswordRegistro');
-      const togglePasswordConfirmacion = document.getElementById('togglePasswordConfirmacion');
-  
-      function validateForm(event) {
-        event.preventDefault(); // Evita que el formulario se envíe automáticamente
-        let valid = true;
-        resetErrors();
-  
-        // Validación del nombre
-        if (!nombre.value.trim() ||!/^[A-Za-z\s]+$/.test(nombre.value.trim())) {
-          valid = false;
-          nombreError.textContent = 'Ingrese un nombre válido.';
-        }
-  
-        // Validación del correo electrónico
-        if (!correoRegistro.value.trim()) {
-          valid = false;
-          correoError.textContent = 'El correo electrónico es requerido.';
-        } else if (!/\S+@\S+\.\S+/.test(correoRegistro.value.trim())) {
-          valid = false;
-          correoError.textContent = 'El correo electrónico debe tener formato válido.';
-        }
-  
-        // Validación de la contraseña
-        if (!contrasenaRegistro.value || contrasenaRegistro.value.length < 8) {
-          valid = false;
-          contrasenaError.textContent = 'La contraseña debe tener al menos 8 caracteres.';
-        } else if (!/[A-Z]/.test(contrasenaRegistro.value)) {
-          valid = false;
-          contrasenaError.textContent = 'La contraseña debe contener al menos una letra mayúscula.';
-        }
-  
-        // Validación de la confirmación de contraseña
-        if (contrasenaRegistro.value!== confirmarContrasena.value) {
-          valid = false;
-          confirmarContrasenaError.textContent = 'Las contraseñas no coinciden.';
-        }
-  
-        // Validación del número de documento
-        if (!numeroDc.value.trim() || isNaN(parseInt(numeroDc.value.trim())) || numeroDc.value.trim().length!== 10) {
-          valid = false;
-          numeroDcError.textContent = 'Ingrese un número de documento válido de 10 dígitos.';
-        }
-  
-        if (valid) {
-          window.location.href = '/inicio';
-        }
-      }
-  
-      function resetErrors() {
-        nombreError.textContent = '';
-        correoError.textContent = '';
-        contrasenaError.textContent = '';
-        confirmarContrasenaError.textContent = '';
-        numeroDcError.textContent = '';
-      }
-  
-      formu.addEventListener('submit', validateForm);
-  
+
+      // Función para mostrar u ocultar la contraseña
       if (togglePasswordRegistro) {
-        togglePasswordRegistro.addEventListener('click', function () {
-          const type = contrasenaRegistro.getAttribute('type') === 'password'? 'text' : 'password';
-          contrasenaRegistro.setAttribute('type', type);
-          this.classList.toggle('bx-show');
-          this.classList.toggle('bx-hide');
-        });
+          togglePasswordRegistro.addEventListener('click', function() {
+              if (contrasenaRegistro) {
+                  const type = contrasenaRegistro.getAttribute('type') === 'password' ? 'text' : 'password';
+                  contrasenaRegistro.setAttribute('type', type);
+              }
+          });
       }
-  
-      if (togglePasswordConfirmacion) {
-        togglePasswordConfirmacion.addEventListener('click', function () {
-          const type = confirmarContrasena.getAttribute('type') === 'password'? 'text' : 'password';
-          confirmarContrasena.setAttribute('type', type);
-          this.classList.toggle('bx-show');
-          this.classList.toggle('bx-hide');
-        });
+
+      // Validación del formulario al enviar
+      if (formu) {
+          formu.addEventListener('submit', function(event) {
+              let valid = true;
+              if (nombreError) nombreError.textContent = '';
+              if (correoError) correoError.textContent = '';
+              if (contrasenaError) contrasenaError.textContent = '';
+              if (confirmarContrasenaError) confirmarContrasenaError.textContent = '';
+              if (numeroDcError) numeroDcError.textContent = '';
+
+              // Validación del nombre
+              const nombreValue = nombre ? nombre.value.trim() : '';
+              if (!nombreValue || !/^[A-Za-z\s]+$/.test(nombreValue)) {
+                  valid = false;
+                  if (nombreError) nombreError.textContent = 'Ingrese un nombre válido.';
+              }
+
+              // Validación del correo electrónico
+              const correoValue = correoRegistro ? correoRegistro.value.trim() : '';
+              if (!correoValue) {
+                  valid = false;
+                  if (correoError) correoError.textContent = 'El correo electrónico es requerido.';
+              } else if (!/\S+@\S+\.\S+/.test(correoValue)) {
+                  valid = false;
+                  if (correoError) correoError.textContent = 'El correo electrónico debe tener formato válido.';
+              }
+
+              // Validación de la contraseña
+              const contrasenaValue = contrasenaRegistro ? contrasenaRegistro.value : '';
+              if (!contrasenaValue || contrasenaValue.length < 8 || !/[A-Z]/.test(contrasenaValue)) {
+                  valid = false;
+                  if (!contrasenaValue) {
+                      if (contrasenaError) contrasenaError.textContent = 'La contraseña es requerida.';
+                  } else if (contrasenaValue.length < 8) {
+                      if (contrasenaError) contrasenaError.textContent = 'La contraseña debe tener al menos 8 caracteres.';
+                  } else if (!/[A-Z]/.test(contrasenaValue)) {
+                      if (contrasenaError) contrasenaError.textContent = 'La contraseña debe contener al menos una letra mayúscula.';
+                  }
+              }
+
+              // Validación de la confirmación de contraseña
+              const confirmarContrasenaValue = confirmarContrasena ? confirmarContrasena.value : '';
+              if (contrasenaValue !== confirmarContrasenaValue) {
+                  valid = false;
+                  if (confirmarContrasenaError) confirmarContrasenaError.textContent = 'Las contraseñas no coinciden.';
+              }
+
+              // Validación del número de documento
+              const numeroDcValue = numeroDc ? numeroDc.value.trim() : '';
+              if (!numeroDcValue || isNaN(parseInt(numeroDcValue)) || numeroDcValue.length !== 10) {
+                  valid = false;
+                  if (numeroDcError) numeroDcError.textContent = 'Ingrese un número de documento válido de 10 dígitos.';
+              }
+
+              if (!valid) {
+                  event.preventDefault();
+              } else {
+                  // Aquí puedes redirigir al usuario a la página de destino después de enviar el formulario
+                  window.location.href = '/inicio';
+              }
+          });
       }
-  
-      window.addEventListener('pageshow', function (event) {
-        if (event.persisted && formu) {
-          formu.reset();
-        }
+
+      // Función para resetear el formulario si se vuelve a cargar la página
+      window.addEventListener('pageshow', function(event) {
+          if (event.persisted && formu) {
+              formu.reset();
+          }
       });
-    });
-  </script>
+  });
+</script>
+
 </body>
 </html>
