@@ -2,12 +2,26 @@
 const months = [
   "ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO",
   "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"
-  ];
+];
+
+let data = months.map(() => ({
+  ingresos: 0,
+  compras: 0,
+  gastos: 0,
+  utilidad: 0,
+}));
+
+let totals = {
+  ingresos: 0,
+  compras: 0,
+  gastos: 0,
+  utilidad: 0,
+};
 
 const handleInputChange = (event, monthIndex, type) => {
   const value = parseFloat(event.target.value) || 0;
-  const updatedData = { ...data[monthIndex], [type]: value };
-  data[monthIndex] = updatedData;
+  data[monthIndex][type] = value;
+  data[monthIndex].utilidad = data[monthIndex].ingresos - (data[monthIndex].compras + data[monthIndex].gastos);
   calculateTotals();
 };
 
@@ -21,7 +35,7 @@ const calculateTotals = () => {
     totalIngresos += monthData.ingresos;
     totalCompras += monthData.compras;
     totalGastos += monthData.gastos;
-    totalUtilidad += monthData.ingresos - (monthData.compras + monthData.gastos);
+    totalUtilidad += monthData.utilidad;
   });
 
   totals.ingresos = totalIngresos;
@@ -29,64 +43,103 @@ const calculateTotals = () => {
   totals.gastos = totalGastos;
   totals.utilidad = totalUtilidad;
 };
-
-const data = months.map(() => ({
-  ingresos: 0,
-  compras: 0,
-  gastos: 0,
-  utilidad: 0,
-}));
-
-const totals = {
-  ingresos: 0,
-  compras: 0,
-  gastos: 0,
-  utilidad: 0,
-};
-
 ---
-<body>
-  <div class="w-full bg-green-500 p-4 flex justify-between items-center">
-    <img src="../img/logo.png" class="w-10 ">
-    <button><img src="../img/perfil.png" class="w-20 ">Alexander</button>
-    <body/>
-    
-<div class="p-4">
-  <div class="w-full max-w-2xl mx-auto bg-green-50 rounded-md overflow-hidden">
-    <div class="bg-green-500 text-white text-center py-2">
-      <h1 class="text-xl font-bold">Año</h1>
-      <h2 class="text-lg">¿Como va mi negocio?</h2>
+
+<html>
+  <body>
+    <div class="w-full bg-green-500 p-4 flex justify-between items-center">
+      <img src="../img/logo.png" class="w-10">
+      <button><img src="../img/perfil.png" class="w-20">Michel A.</button>
     </div>
-    <table class="w-full table-auto">
-      <thead class="bg-green-400 text-white">
-        <tr>
-          <th class="px-4 py-2">MES</th>
-          <th class="px-4 py-2">INGRESOS</th>
-          <th class="px-4 py-2">COMPRAS</th>
-          <th class="px-4 py-2">GASTOS</th>
-          <th class="px-4 py-2">UTILIDAD</th>
-        </tr>
-      </thead>
-      <tbody>
-        {months.map((month) => (
-          <tr class="even:bg-green-100">
-            <td class="border px-4 py-2" >{month}</td>
-            <td class="border px-4 py-2"></td>
-            <td class="border px-4 py-2"></td>
-            <td class="border px-4 py-2"></td>
-            <td class="border px-4 py-2"></td>
-          </tr>
-        ))}
-      </tbody>
-      <tfoot class="bg-green-400 text-white">
-        <tr>
-          <td class="px-4 py-2">TOTAL</td>
-          <td class="px-4 py-2"></td>
-          <td class="px-4 py-2"></td>
-          <td class="px-4 py-2"></td>
-          <td class="px-4 py-2"></td>
-        </tr>
-      </tfoot>
-    </table>
-  </div>
-</div>
+    
+    <div class="p-4">
+      <div class="w-full max-w-2xl mx-auto bg-green-50 rounded-md overflow-hidden">
+        <div class="bg-green-500 text-white text-center py-2">
+          <h2 class="text-lg">Consolidado</h2>
+        </div>
+        <table class="w-full table-auto">
+          <thead class="bg-green-400 text-white">
+            <tr>
+              <th class="px-4 py-2 cabeza">MES</th>
+              <th class="px-4 py-2 cabeza">INGRESOS</th>
+              <th class="px-4 py-2 cabeza">COMPRAS</th>
+              <th class="px-4 py-2 cabeza">GASTOS</th>
+              <th class="px-4 py-2 cabeza">UTILIDAD</th>
+            </tr>
+          </thead>
+          <tbody>
+            {months.map((month, index) => (
+              <tr class="even:bg-green-100"></tr> 
+                <td class="border px-4 py-2 cuerpo">{month}</td>
+                <td class="border px-4 py-2 cuerpo">
+                  <input
+                    type="number"
+                    value=""
+                    class="monto ingresos bg-green-50 w-full p-2"
+                  />
+                </td>
+                <td class="border px-4 py-2 cuerpo">
+                  <input
+                    type="number"
+                    value=""
+                    class="monto compras bg-green-50 w-full p-2"
+                  />
+                </td>
+                <td class="border px-4 py-2 cuerpo">
+                  <input
+                    type="number"
+                    value=""
+                    class="monto gastos bg-green-50 w-full p-2"
+                  />
+                </td>
+                <td class="border px-4 py-2 cuerpo">
+                  <input
+                    type="number"
+                    value=""
+                    class="monto utilidad bg-green-50 w-full p-2"
+                  />
+                </td>
+            
+            ))}
+          </tbody>
+          <tfoot class="bg-green-400 text-white">
+            <tr>
+              <td class="px-4 py-2 cuerpo">TOTAL</td>
+              <td class="px-4 py-2 cuerpo">{totals.ingresos}</td>
+              <td class="px-4 py-2 cuerpo">{totals.compras}</td>
+              <td class="px-4 py-2 cuerpo">{totals.gastos}</td>
+              <td class="px-4 py-2 cuerpo">{totals.utilidad}</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+
+<script>
+         // Supongamos que tienes una matriz que representa los valores de la columna
+let columna = ["10", "20", "30", "40", "not a number", "50"];
+
+// Función para validar si un valor es un número
+function esNumero(valor) {
+    return !isNaN(parseFloat(valor)) && isFinite(valor);
+}
+
+// Función para sumar los valores de la columna
+function sumarColumna(columna) {
+    let suma = 0;
+    for (let i = 0; i < columna.length; i++) {
+        if (esNumero(columna[i])) {
+            suma += parseFloat(columna[i]);
+        } else {
+            console.log(`El valor '${columna[i]}' no es un número válido y será omitido.`);
+        }
+    }
+    return suma;
+}
+
+// Llamar a la función y mostrar el resultado
+let sumaTotal = sumarColumna(columna);
+console.log(`La suma de los valores de la columna es: ${sumaTotal}`);
+ 
+      </script>
+
