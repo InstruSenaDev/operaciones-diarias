@@ -1,35 +1,29 @@
-// controllers/dataController.js
-import { Client } from 'pg';
+import bcrypt from 'bcrypt';
+import { Pool } from '../config/db';
 
-const client = new Client({
-  host: 'localhost',
-  user: 'tu_usuario',
-  password: 'tu_contraseña',
-  database: 'tu_base_de_datos',
-  port: 5432,
-});
+const pool = new Pool();
 
-client.connect()
-  .then(() => console.log('Conectado a PostgreSQL'))
-  .catch(err => console.error('Error al conectar a PostgreSQL:', err));
+// Función para registrar una nueva persona
+async function register({ nombrecompleta, contraseña, Ndedocumento, correo, idrol }) {
+  try {
+      console.log('Datos recibidos en registerPerson:', { nombrecompleta, contraseña, Ndedocumento, correo, idrol });
 
-const getLibros = (req, res) => {
-  client.query('SELECT * FROM libro', (err, results) => {
-    if (err) {
-      console.error('Error al obtener libros: ', err.message);
-      return res.status(500).json({
-        error: 'Error interno del servidor',
-        message: 'No se pudo obtener la lista de libros. Por favor, intente de nuevo más tarde.'
-      });
-    }
-    res.status(200).json({
-      success: true,
-      data: results.rows, // Cambia results a results.rows para PostgreSQL
-      message: 'Libros obtenidos exitosamente'
-    });
-  });
-};
+      // Cifrar la contraseña
+      const hashedPassword = await bcrypt.hash(contraseña, 10);
+      console.log('Contraseña cifrada:', hashedPassword);
 
-export default {
-  getLibros
-};
+      const client = await pool.connect();
+      const result = await client.query(
+          'INSERT INTO personas (nombrecompleta, contraseña, Ndedocumento, correo, idrol) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+          [nombrecompleta, hashedPassword, Ndedocumento, correo, idrol]
+      );
+      client.release();
+      console.log('Persona registrada con éxito:', result.rows[0]);
+      return result.rows[0];
+  } catch (error) {
+      console.error('Error al registrar persona:', error);
+      throw error;
+  }
+}
+
+export { register };

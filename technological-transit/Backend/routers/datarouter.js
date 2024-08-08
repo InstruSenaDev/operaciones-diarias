@@ -1,11 +1,16 @@
-// routes/dataRouter.js
 import express from 'express';
-import datacontroler from '../controllers/datacontroler.js'; // Incluye la extensión .js
+import { register } from '../controllers/dataController.js';
 
 const router = express.Router();
 
-// Ruta para obtener todos los libros
-router.get('/libros', datacontroler.getLibros);
+router.post('/register', async (req, res) => {
+    try {
+        const newPerson = await register(req.body);
+        res.status(201).json(newPerson);
+    } catch (error) {
+        console.error('Error al registrar persona:', error);
+        res.status(500).json({ error: 'Internal server error', details: error.message });
+    }
+});
 
 export default router;
-

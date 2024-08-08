@@ -1,22 +1,16 @@
-// app.js
 import express from 'express';
-import cors from 'cors';
-import morgan from 'morgan';
-import dataRouter from './routes/dataRouter.js'; // Incluye la extensión .js
+import bodyParser from 'body-parser';
+import dataRouter from './routes/dataRouter.js'; // Asegúrate de que la ruta es correcta
 
 const app = express();
-const port = 4000;
+const PORT = process.env.PORT || 4000;
 
-app.use(cors());
-app.use(morgan('combined'));
-app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public')); // Servir archivos estáticos desde 'public'
 
-app.use('/api', dataRouter);
+app.use('/api', dataRouter); // Usar el enrutador para manejar '/api'
 
-app.get('/', (req, res) => {
-  res.send('Servidor en funcionamiento.');
-});
-
-app.listen(port, () => {
-  console.log(`Servidor en puerto ${port}`);
+app.listen(PORT, () => {
+    console.log(`Servidor escuchando en el puerto ${PORT}`);
 });

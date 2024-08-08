@@ -24,25 +24,27 @@ const handleInputChange = (event, monthIndex, type) => {
   data[monthIndex].utilidad = data[monthIndex].ingresos - (data[monthIndex].compras + data[monthIndex].gastos);
   calculateTotals();
 };
-
 const calculateTotals = () => {
   let totalIngresos = 0;
   let totalCompras = 0;
   let totalGastos = 0;
   let totalUtilidad = 0;
+  let totalExpenses = 0; // Nueva variable para almacenar la suma.
 
   data.forEach(monthData => {
     totalIngresos += monthData.ingresos;
     totalCompras += monthData.compras;
     totalGastos += monthData.gastos;
     totalUtilidad += monthData.utilidad;
+    totalExpenses = totalCompras + totalGastos; //Calcular la suma aquí
   });
 
   totals.ingresos = totalIngresos;
   totals.compras = totalCompras;
   totals.gastos = totalGastos;
-  totals.utilidad = totalUtilidad;
+  totals.utilidad = totalUtilidad // Agregue el nuevo total al objeto de totales
 };
+
 ---
 
 <html>
@@ -109,37 +111,11 @@ const calculateTotals = () => {
               <td class="px-4 py-2 cuerpo">{totals.compras}</td>
               <td class="px-4 py-2 cuerpo">{totals.gastos}</td>
               <td class="px-4 py-2 cuerpo">{totals.utilidad}</td>
-            </tr>
+            </td>  
+          
+          </tr>
           </tfoot>
+          
         </table>
       </div>
     </div>
-
-<script>
-         // Supongamos que tienes una matriz que representa los valores de la columna
-let columna = ["10", "20", "30", "40", "not a number", "50"];
-
-// Función para validar si un valor es un número
-function esNumero(valor) {
-    return !isNaN(parseFloat(valor)) && isFinite(valor);
-}
-
-// Función para sumar los valores de la columna
-function sumarColumna(columna) {
-    let suma = 0;
-    for (let i = 0; i < columna.length; i++) {
-        if (esNumero(columna[i])) {
-            suma += parseFloat(columna[i]);
-        } else {
-            console.log(`El valor '${columna[i]}' no es un número válido y será omitido.`);
-        }
-    }
-    return suma;
-}
-
-// Llamar a la función y mostrar el resultado
-let sumaTotal = sumarColumna(columna);
-console.log(`La suma de los valores de la columna es: ${sumaTotal}`);
- 
-      </script>
-
