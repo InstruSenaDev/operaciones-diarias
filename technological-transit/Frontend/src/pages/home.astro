@@ -3,47 +3,83 @@ import Cuadro from "../../components/cuadro.astro";
 import Respon from "../../components/respon.astro";
 ---
 
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>home</title>
-  <link
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>home</title>
+    <link
       href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
-      rel="stylesheet">
-</head>
-<Respon/>
-<body class="bg-white">
-<div class="flex flex-col items-center">
-    <!-- Header -->
-    <div class="w-full bg-green-600 p-4 flex justify-between items-center">
-    <img src="../img/logo.png" class="w-20 ">
+      rel="stylesheet"
+    />
+
+
+<section class="bg-green-500">
+
+  <div class="container mx-auto flex items-center justify-between py-4 px-6">
+    <div class="flex flex-row">
+        <img src="../../public/img/logo.png" class="h-33 w-20 "/>
+        <div class="text-white font-bold text-2xl">LROD</div>
     </div>
+    
+    
+    <nav>
+      <ul class="flex space-x-6 text-white">
+        <li><a href="#" class="hover:text-gray-300">Home</a></li>
+        <li><a href="#" class="hover:text-gray-300">Features</a></li>
+        <li><a href="#" class="hover:text-gray-300">Pricing</a></li>
+        <li><a href="#" class="hover:text-gray-300">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</section>
 
+<section class="relative">
+  <img src="../../public/img/home_1.png" alt="Background" class="w-full h-56 object-cover ">
+  <div class="absolute inset-0 flex flex-col justify-center items-center text-center text-white bg-opacity-50 bg-black">
+    <h1 class="text-5xl font-bold drop-shadow-lg">BIENVENIDOS</h1>
+    <p class="text-xl mt-2">Libro De Operaciones Diarias</p>
+    <a href="#" class="mt-4 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded shadow-lg transform hover:scale-105 transition-all">
+      Ingresar
+    </a>
+  </div>
+</section>
 
-    <div class="relative w-full ">
-      <img src="../img/home.jpg" class="w-full h-56 object-cover ">
-      <div class="absolute bottom-0 left-16 p-10">
-              <h1 class="text-8xl font-bold text-white">BIENVENIDOS</h1>
-              <p class="text-4xl text-white">Libro De Operaciones Diarias</p>
-             <a href="inicio"><button class="bg-green-600 text-white font-bold py-2 px-4 rounded-lg">Ingresar</button></a> 
-              
-              
+<section class="bg-gray-100 py-16">
+  <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 px-6">
+    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all">
+      <img src="../../public/img/home_2.png" alt="Image 1" class="w-full h-48 object-contain">
+      <p class="mt-4 text-gray-700">
+        ¿Alguna vez te has preguntado cómo las empresas mantienen un registro detallado de todas sus transacciones financieras?
+      </p>
+    </div>
+    <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transform hover:scale-105 transition-all">
+      <img src="../../public/img/home_3.png" alt="Image 2" class="w-full h-48 object-contain">
+      <p class="mt-4 text-gray-700">
+        ¡No importa si eres un emprendedor que recién comienza o un profesional experimentado en contabilidad, está diseñada para ser una guía útil y accesible en el mundo del libro de operaciones diarias!
+      </p>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-green-500 text-white py-16">
+  <div class="container mx-auto px-5">
+    <div class="flex justify-between items-center">
+      <div>
+        <h2 class="font-bold text-xl">LROD</h2>
+        <p class="text-sm mt-2">© 2024 Libro De Operaciones Diarias. Todos los derechos reservados.</p>
+      </div>
+      <div class="flex space-x-4">
+        <a href="#" class="hover:text-gray-300">About Us</a>
+        <a href="#" class="hover:text-gray-300">Terms of Service</a>
+        <a href="#" class="hover:text-gray-300">Privacy Policy</a>
+        <a href="#" class="hover:text-gray-300">Contact</a>
       </div>
     </div>
-  
-      <div class="p-4 flex justify-between items-center">
-            <Cuadro/>
-          <div class=" mt-4 text-center text-lg text-black-700">
-              ¿Alguna vez te has preguntado cómo las empresas mantienen un registro detallado de todas sus transacciones financieras?
-        </div>
-          </div>
-        
-    <div class="p-4 flex justify-between items-center">"
-        <Cuadro/>
-      <div class=" mt-4 text-center text-lg text-black-700">
-        ¡No importa si eres un emprendedor que recién comienza o un profesional experimentado en contabilidad, 
-          está diseñada para ser una guía útil y accesible en el mundo del libro de operaciones diarias!</p>
+    <div class="flex justify-center mt-4 space-x-4">
+      <a href="#" class="text-white hover:text-gray-300"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="text-white hover:text-gray-300"><i class="fab fa-twitter"></i></a>
+      <a href="#" class="text-white hover:text-gray-300"><i class="fab fa-instagram"></i></a>
     </div>
-</body>
-</html>
+  </div>
+</footer>

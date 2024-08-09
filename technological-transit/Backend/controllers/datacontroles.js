@@ -1,21 +1,31 @@
-import bcrypt from 'bcrypt';
 import { Pool } from '../config/db';
 
 const pool = new Pool();
 
-// Función para registrar una nueva persona
-async function register({ nombrecompleta, contraseña, Ndedocumento, correo, idrol }) {
-  try {
-      console.log('Datos recibidos en registerPerson:', { nombrecompleta, contraseña, Ndedocumento, correo, idrol });
+// Función para obtener todas las personas
+async function getAllUsuario() {
+    try {
+        console.log('Obteniendo todas las personas...');
+        const client = await pool.connect();
+        const result = await client.query('SELECT * FROM usuario');
+        client.release();
+        console.log('Personas obtenidas con éxito:', result.rows);
+        return result.rows;
+    } catch (error) {
+        console.error('Error al obtener personas:', error);
+        throw error;
+    }
+} 
 
-      // Cifrar la contraseña
-      const hashedPassword = await bcrypt.hash(contraseña, 10);
-      console.log('Contraseña cifrada:', hashedPassword);
+// Función para registrar una nueva persona
+async function register({ nombre, documento, correo, idrol }) {
+  try {
+      console.log('Datos recibidos en register:', { nombre, documento, contraseña, correo, idrol});
 
       const client = await pool.connect();
       const result = await client.query(
-          'INSERT INTO personas (nombrecompleta, contraseña, Ndedocumento, correo, idrol) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-          [nombrecompleta, hashedPassword, Ndedocumento, correo, idrol]
+          'INSERT INTO usuario (nombre, documento, contraseña, correo, idrol) VALUES ($1, $2, $3, $4) RETURNING *',
+          [nombre, documento, contraseña, correo, idrol]
       );
       client.release();
       console.log('Persona registrada con éxito:', result.rows[0]);
@@ -26,4 +36,4 @@ async function register({ nombrecompleta, contraseña, Ndedocumento, correo, idr
   }
 }
 
-export { register };
+export { register, getAllUsuario };

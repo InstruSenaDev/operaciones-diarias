@@ -1,0 +1,82 @@
+---
+import Cuadro from "../../components/cuadro.astro";
+import Respon from "../../components/respon.astro";
+---
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>home</title>
+  <link
+    href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+    rel="stylesheet"
+  />
+</head>
+<body>
+  <div class="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-md">
+      <h2 class="text-2xl font-bold text-center text-gray-900">Recuperar Contraseña</h2>
+      <form id="passwordForm" class="mt-8 space-y-6">
+        <div>
+          <label for="new-password" class="block text-sm font-medium text-gray-700">Nueva Contraseña</label>
+          <input id="new-password" name="new-password" type="password" required class="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Al menos 8 caracteres, una letra mayúscula">
+          <p id="new-password-error" class="mt-2 text-sm text-red-600 hidden">La contraseña debe tener al menos 8 caracteres y contener una letra mayúscula.</p>
+        </div>
+        <div>
+          <label for="confirm-password" class="block text-sm font-medium text-gray-700">Confirmar Contraseña</label>
+          <input id="confirm-password" name="confirm-password" type="password" required class="w-full px-3 py-2 mt-1 border rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+          <p id="confirm-password-error" class="mt-2 text-sm text-red-600 hidden">Las contraseñas no coinciden.</p>
+        </div>
+        <div class="flex items-center">
+          <input id="remember-me" name="remember-me" type="checkbox" class="w-4 h-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+          <label for="remember-me" class="block ml-2 text-sm text-gray-900">Recordar contraseña</label>
+        </div>
+        <div>
+          <button type="submit" class="w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Recuperar Contraseña</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('passwordForm');
+    const newPasswordInput = document.getElementById('new-password');
+    const confirmPasswordInput = document.getElementById('confirm-password');
+    const newPasswordError = document.getElementById('new-password-error');
+    const confirmPasswordError = document.getElementById('confirm-password-error');
+
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+
+      const newPassword = newPasswordInput.value;
+      const confirmPassword = confirmPasswordInput.value;
+      const passwordRegex = /^(?=.*[A-Z]).{8,}$/;
+
+      let valid = true;
+
+      // Validar nueva contraseña
+      if (!passwordRegex.test(newPassword)) {
+        newPasswordError.classList.remove('hidden');
+        valid = false;
+      } else {
+        newPasswordError.classList.add('hidden');
+      }
+
+      // Validar confirmación de contraseña
+      if (newPassword !== confirmPassword) {
+        confirmPasswordError.classList.remove('hidden');
+        valid = false;
+      } else {
+        confirmPasswordError.classList.add('hidden');
+      }
+
+      // Si es válido, enviar el formulario
+      if (valid) {
+        form.submit();
+      }
+    });
+  </script>
+</body>
+</html>
+

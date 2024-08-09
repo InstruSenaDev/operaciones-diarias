@@ -110,9 +110,30 @@ import Respon from "../../components/respon.astro";
         contrasenaError.classList.add('hidden');
       }
 
-      // Si es válido, envía el formulario
+      // Si es válido, envía los datos usando fetch
       if (valido) {
-        document.getElementById("loginForm").submit();
+        const data = {
+          usuario: usuario,
+          contrasena: contrasena
+        };
+
+        fetch('http://localhost:PORT/api/register', { 
+  method: 'POST', 
+  body: JSON.stringify(data), 
+  headers: { 'Content-Type': 'application/json' } 
+})
+
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          console.log('Success:', data);
+          // Aquí puedes manejar la redirección o mostrar un mensaje de éxito
+        })
+        .catch(error => console.error('Error:', error));
       }
     });
   </script>
