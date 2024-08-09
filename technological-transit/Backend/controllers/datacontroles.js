@@ -1,7 +1,5 @@
 import { Pool } from '../config/db';
 
-const pool = new Pool();
-
 // Función para obtener todas las personas
 async function getAllUsuario() {
     try {
@@ -18,22 +16,22 @@ async function getAllUsuario() {
 } 
 
 // Función para registrar una nueva persona
-async function register({ nombre, documento, correo, idrol }) {
-  try {
-      console.log('Datos recibidos en register:', { nombre, documento, contraseña, correo, idrol});
-
-      const client = await pool.connect();
-      const result = await client.query(
-          'INSERT INTO usuario (nombre, documento, contraseña, correo, idrol) VALUES ($1, $2, $3, $4) RETURNING *',
-          [nombre, documento, contraseña, correo, idrol]
-      );
-      client.release();
-      console.log('Persona registrada con éxito:', result.rows[0]);
-      return result.rows[0];
-  } catch (error) {
-      console.error('Error al registrar persona:', error);
-      throw error;
+async function register({ nombre, contraseña, documento, correo, idrol }) {
+    try {
+        console.log('Datos recibidos en register:', { nombre, contraseña, documento, correo, idrol });
+  
+        const client = await pool.connect();
+        const result = await client.query(
+            'INSERT INTO usuario (nombre, documento, contraseña, correo, idrol) VALUES ($1, $2, $3, $4, $5) RETURNING *',
+            [nombre, documento, contraseña, correo, idrol]
+        );
+        client.release();
+        console.log('Persona registrada con éxito:', result.rows[0]);
+        return result.rows[0];
+    } catch (error) {
+        console.error('Error al registrar persona:', error);
+        throw error;
+    }
   }
-}
-
+  
 export { register, getAllUsuario };

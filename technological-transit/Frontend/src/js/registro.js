@@ -32,6 +32,39 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Enviar los datos al servidor
+    try {
+        const response = await fetch('/api/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                nombre: nombreValue, // Asegúrate de que este campo esté definido en el backend
+                correo: correoValue,
+                contraseña: contrasenaValue,
+                documento: numeroDcValue,
+                idrol: 1, // Ajusta el valor según corresponda
+            }),
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            // Redirigir al usuario a la página de inicio después del registro exitoso
+            window.location.href = '/inicio';
+        } else {
+            console.error('Error en el registro:', result.error);
+            alert('Error en el registro: ' + result.error);
+        }
+    } catch (error) {
+        console.error('Error al enviar la solicitud:', error);
+        alert('Error al enviar la solicitud: ' + error.message);
+    }
+
+});
+
+
     // Validación del formulario al enviar
     if (formu) {
         formu.addEventListener('submit', async function(event) {
@@ -92,38 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!valid) {
                 return;
             }
-
-            // Enviar los datos al servidor
-            try {
-                const response = await fetch('/api/register', { // Ajustado el endpoint
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        nombrecompleta: nombreValue,
-                        correo: correoValue,
-                        contraseña: contrasenaValue,
-                        Ndedocumento: numeroDcValue,
-                        idrol: 1, // Ajusta el valor según corresponda
-                    }),
-                });
-
-                const result = await response.json();
-
-                if (response.ok) {
-                    // Redirigir al usuario a la página de inicio después del registro exitoso
-                    window.location.href = '/inicio';
-                } else {
-                    console.error('Error en el registro:', result.error);
-                    alert('Error en el registro: ' + result.error);
-                }
-            } catch (error) {
-                console.error('Error al enviar la solicitud:', error);
-                alert('Error al enviar la solicitud: ' + error.message);
-            }
-        });
-    }
+            
 
     // Función para resetear el formulario si se vuelve a cargar la página
     window.addEventListener('pageshow', function(event) {
@@ -131,4 +133,4 @@ document.addEventListener('DOMContentLoaded', function() {
             formu.reset();
         }
     });
-});
+
