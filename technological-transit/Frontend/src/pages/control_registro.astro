@@ -37,20 +37,33 @@ import PerfilMenu from"../../components/perfilMenu.astro";
       <div class="flex flex-col">
         <label for="mes" class="block mb-4 text-sm font-medium"></label>
     </label>
-    <input
-      type="text"
-      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
-      placeholder="Mes:"
-    />
+    <select id="month-select" class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200">
+      <option value="" disabled selected>Selecciona un mes</option>
+      <option value="1">Enero</option>
+      <option value="2">Febrero</option>
+      <option value="3">Marzo</option>
+      <option value="4">Abril</option>
+      <option value="5">Mayo</option>
+      <option value="6">Junio</option>
+      <option value="7">Julio</option>
+      <option value="8">Agosto</option>
+      <option value="9">Septiembre</option>
+      <option value="10">Octubre</option>
+      <option value="11">Noviembre</option>
+      <option value="12">Diciembre</option>
+    </select>    
+
       </div>
       <div class="flex flex-col">
         <label for="año" class="block mb-4 text-sm font-medium"></label>
     </label>
     <input
-      type="number"
-      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
-      placeholder="Año:"
-    />
+  id="year-input"
+  type="number"
+  class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+  placeholder="Año:"
+/>
+
       </div>
     </div>
   
@@ -132,5 +145,83 @@ import PerfilMenu from"../../components/perfilMenu.astro";
   <body class="bg-gray-100">
    <PerfilMenu/>
   </body>
+  <script>
+    // Seleccionar todos los campos de entrada tipo número
+    document.querySelectorAll('input[type="number"]').forEach(function(input) {
+      // Añadir un evento de entrada para cada campo
+      input.addEventListener('input', function(e) {
+        const value = parseInt(e.target.value, 10); // Convertir el valor a un número entero
+  
+        // Validar que el valor esté entre 1 y 31
+        if (value < 1 || value > 31 || isNaN(value)) {
+          e.target.setCustomValidity('Por favor, ingrese un número entre 1 y 31.');
+          e.target.classList.add('border-red-500');
+          e.target.classList.remove('border-green-500');
+        } else {
+          e.target.setCustomValidity(''); // Borrar mensaje de error
+          e.target.classList.add('border-green-500');
+          e.target.classList.remove('border-red-500');
+        }
+  
+        // Re-validar el formulario para mostrar el mensaje de error
+        e.target.reportValidity();
+      });
+    });
+  </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const select = document.getElementById('month-select');
+
+    select.addEventListener('change', function(e) {
+      const selectedValue = e.target.value;
+
+      // Aquí puedes agregar lógica adicional si es necesario
+      console.log('Mes seleccionado:', selectedValue);
+
+      // Ejemplo: Cambiar el color del borde basado en la selección
+      if (selectedValue) {
+        select.classList.add('border-green-500');
+        select.classList.remove('border-red-500');
+      } else {
+        select.classList.add('border-red-500');
+        select.classList.remove('border-green-500');
+      }
+    });
+  });
+</script>
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const input = document.getElementById('year-input');
+    
+    // Obtener el año actual
+    const currentYear = new Date().getFullYear();
+    const maxYear = 2049;
+
+    input.addEventListener('input', function(e) {
+      const value = parseInt(e.target.value, 10); // Convertir el valor a un número entero
+
+      // Validar que el año esté dentro del rango permitido
+      if (value < currentYear || value > maxYear || isNaN(value)) {
+        e.target.setCustomValidity(`Por favor, ingrese un año entre fecha de la actualidad y 17/07/2049.`);
+        e.target.classList.add('border-red-500');
+        e.target.classList.remove('border-green-500');
+      } else {
+        e.target.setCustomValidity(''); // Borrar mensaje de error
+        e.target.classList.add('border-green-500');
+        e.target.classList.remove('border-red-500');
+      }
+
+      // Re-validar el formulario para mostrar el mensaje de error
+      e.target.reportValidity();
+    });
+  });
+</script>
+
+
+  
     </html>
+
     

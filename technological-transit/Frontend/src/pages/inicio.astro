@@ -6,116 +6,104 @@ import Respon from "../../components/respon.astro";
 
 <!doctype html>
 <html lang="es">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>Inicio Sesión</title>
-  <link
-    href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
-    rel="stylesheet"
-  />
-  <script defer src="../js/validation.js"></script>
-</head>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Inicio Sesión</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script defer src="../js/validation.js"></script>
+  </head>
 
-<body>
-  <div class="flex flex-col items-center justify-center min-h-screen bg-white">
-    <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
-      <div class="mb-4">
-        <img
-          src="../img/img_login.jpeg"
-          alt="Illustration of a person working on a laptop with analytics charts and money symbols"
-          class="w-full h-35 object-cover rounded-lg"
-        />
+  <body>
+    <div
+      class="flex flex-col items-center justify-center min-h-screen bg-white"
+    >
+      <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
+        <div class="mb-4">
+          <img
+            src="../img/img_login.jpeg"
+            alt="Illustration of a person working on a laptop with analytics charts and money symbols"
+            class="w-full h-35 object-cover rounded-lg"
+          />
+        </div>
+        <h2 class="mb-6 text-2xl font-bold text-center">Iniciar Sesión</h2>
+        <form id="loginForm" class="space-y-6">
+          <!-- Usuario -->
+          <div id="usuarioDiv">
+            <label for="usuario" class="block text-sm font-medium text-gray-700"
+            ></label>
+            <input
+              id="usuario"
+              type="text"
+              class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+              placeholder="Ingrese su usuario"
+            />
+            <p id="usuarioError" class="text-red-500 text-sm hidden">
+              Ingrese un correo electrónico válido
+            </p>
+          </div>
+
+          <!-- Contraseña -->
+          <div id="contrasenaDiv">
+            <label
+              for="contrasena"
+              class="block text-sm font-medium text-gray-700"></label>
+            <input
+              id="contrasena"
+              type="password"
+              class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+              placeholder="Ingrese su contraseña"
+            />
+            <p id="contrasenaError" class="text-red-500 text-sm hidden">
+              La contraseña debe tener al menos 8 caracteres
+            </p>
+          </div>
+
+          <!-- Recordar Contraseña -->
+          <div id="recordarDiv" class="flex items-center justify-between">
+            <div class="flex items-center">
+              <input
+                id="recordar"
+                type="checkbox"
+                class="h-4 w-4 text-green-500 border-gray-300 rounded focus:ring-green-500"
+              />
+              <label for="recordar" class="ml-2 text-sm text-gray-600"
+                >Recordar Contraseña</label
+              >
+            </div>
+            <div>
+              <a
+                href="recuperar"
+                class="text-sm text-green-600 hover:text-green-700"
+                >Olvidaste tu contraseña?</a
+              >
+            </div>
+          </div>
+
+          <!-- Botón de Iniciar Sesión -->
+          <div id="botonDiv">
+            <button
+              type="submit"
+              class="w-full px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:ring-green-500 focus:ring-1"
+            >
+              Iniciar Sesión
+            </button>
+          </div>
+
+          <!-- Crear Cuenta -->
+          <div id="crearCuentaDiv" class="text-center">
+            <a
+              href="inscribirte"
+              class="text-sm text-green-600 hover:text-green-700"
+              >Crear Cuenta</a
+            >
+          </div>
+        </form>
       </div>
-      <h2 class="mb-6 text-2xl font-bold text-center">Iniciar Sesión</h2>
-      <form id="loginForm" class="space-y-6">
-        
-        <!-- Usuario -->
-        <div id="usuarioDiv">
-          <label for="usuario" class="block text-sm font-medium text-gray-700"></label>
-          <input
-            id="usuario"
-            type="text"
-            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
-            placeholder="Ingrese su usuario"
-          />
-          <p id="usuarioError" class="text-red-500 text-sm hidden">Ingrese un correo electrónico válido</p>
-        </div>
-
-        <!-- Contraseña -->
-        <div id="contrasenaDiv">
-          <label for="contrasena" class="block text-sm font-medium text-gray-700"></label>
-          <input
-            id="contrasena"
-            type="password"
-            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
-            placeholder="Ingrese su contraseña"
-          />
-          <p id="contrasenaError" class="text-red-500 text-sm hidden">La contraseña debe tener al menos 8 caracteres</p>
-        </div>
-
-        <!-- Recordar Contraseña -->
-        <div id="recordarDiv" class="flex items-center justify-between">
-          <div class="flex items-center">
-            <input id="recordar" type="checkbox" class="h-4 w-4 text-green-500 border-gray-300 rounded focus:ring-green-500">
-            <label for="recordar" class="ml-2 text-sm text-gray-600">Recordar Contraseña</label>
-          </div>
-          <div>
-            <a href="recuperar" class="text-sm text-green-600 hover:text-green-700">Olvidaste tu contraseña?</a>
-          </div>
-        </div>
-
-        <!-- Botón de Iniciar Sesión -->
-        <div id="botonDiv">
-          <button
-            type="submit"
-            class="w-full px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:ring-green-500 focus:ring-1"
-          >
-            Iniciar Sesión
-          </button>
-        </div>
-
-        <!-- Crear Cuenta -->
-        <div id="crearCuentaDiv" class="text-center">
-          <a href="inscribirtePrueba" class="text-sm text-green-600 hover:text-green-700">Crear Cuenta</a>
-        </div>
-      </form>
     </div>
-  </div>
 
-  <script>
-    document.getElementById("loginForm").addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      const usuario = document.getElementById('usuario').value;
-      const contrasena = document.getElementById('contrasena').value;
-
-      const usuarioError = document.getElementById('usuarioError');
-      const contrasenaError = document.getElementById('contrasenaError');
-
-      let valido = true;
-
-      // Validación del correo electrónico
-      if (!usuario.includes("@")) {
-        usuarioError.classList.remove('hidden');
-        valido = false;
-      } else {
-        usuarioError.classList.add('hidden');
-      }
-
-      // Validación de la contraseña
-      if (contrasena.length < 8) {
-        contrasenaError.classList.remove('hidden');
-        valido = false;
-      } else {
-        contrasenaError.classList.add('hidden');
-      }
-
-      // Si es válido, envía el formulario
-      if (valido) {
-        document.getElementById("loginForm").submit();
-      }
-    });
-  </script>
-
-</body>
+    <script src="../js/inicio.js"></script>
+  </body>
 </html>

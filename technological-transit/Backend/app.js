@@ -1,9 +1,13 @@
 import express from 'express';
+import cors from 'cors'; // Importa el middleware cors
 import bodyParser from 'body-parser';
 import datarouter from './routers/datarouter.js';
 
 const app = express();
 const PORT = process.env.PORT || 4000;
+
+// Configura CORS para permitir solicitudes desde cualquier origen
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

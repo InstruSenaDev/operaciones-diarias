@@ -1,142 +1,92 @@
 ---
 import Input from "../../components/input.astro";
 import Botones from "../../components/botones.astro";
-import Respon from "../../components/respon.astro";
 ---
 
 <!doctype html>
 <html lang="es">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <title>Inicio Sesión</title>
-  <link
-    href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
-    rel="stylesheet"
-  />
-  <script defer src="../js/validation.js"></script>
+  <title>Recuperar contraseña</title>
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
 </head>
 
 <body>
-  <div class="flex flex-col items-center justify-center min-h-screen bg-white">
-    <div class="w-full max-w-md p-8 bg-white rounded-lg shadow-md">
-      <div class="mb-4">
+  <div class="flex flex-col items-center justify-center min-h-screen bg-white-100 p-4">
+    <div class="grid grid-cols-2 gap-3">
+      <div>
         <img
-          src="../img/img_login.jpeg"
-          alt="Illustration of a person working on a laptop with analytics charts and money symbols"
-          class="w-full h-35 object-cover rounded-lg"
-        />
+          src="../img/img_recuperar.png" class="w-full h-full"/>
       </div>
-      <h2 class="mb-6 text-2xl font-bold text-center">Iniciar Sesión</h2>
-      <form id="loginForm" class="space-y-6">
-        
-        <!-- Usuario -->
-        <div id="usuarioDiv">
-          <label for="usuario" class="block text-sm font-medium text-gray-700"></label>
-          <input
-            id="usuario"
-            type="text"
-            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
-            placeholder="Ingrese su usuario"
-          />
-          <p id="usuarioError" class="text-red-500 text-sm hidden">Ingrese un correo electrónico válido</p>
-        </div>
-
-        <!-- Contraseña -->
-        <div id="contrasenaDiv">
-          <label for="contrasena" class="block text-sm font-medium text-gray-700"></label>
-          <input
-            id="contrasena"
-            type="password"
-            class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
-            placeholder="Ingrese su contraseña"
-          />
-          <p id="contrasenaError" class="text-red-500 text-sm hidden">La contraseña debe tener al menos 8 caracteres</p>
-        </div>
-
-        <!-- Recordar Contraseña -->
-        <div id="recordarDiv" class="flex items-center justify-between">
-          <div class="flex items-center">
-            <input id="recordar" type="checkbox" class="h-4 w-4 text-green-500 border-gray-300 rounded focus:ring-green-500">
-            <label for="recordar" class="ml-2 text-sm text-gray-600">Recordar Contraseña</label>
+      <div class="form-container bg-white p-20 rounded-lg shadow-lg w-96">
+        <div class="flex flex-col justify-center gap-4">
+          <h2 class="mb-8 text-2xl font-bold">Recuperar  Contraseña</h2>
+        <form class="space-y-4 w-full" id="password-recovery-form">
+          <div class="mb-4">
+            <label for="contraseña" class="block mb-2 text-sm font-medium"></label>
+            <input
+              id="contraseña"
+              type="password"
+              class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+              placeholder="Nueva Contraseña"
+            />
+            <span id="contraseña-error" class="text-red-500 text-sm"></span>
           </div>
-          <div>
-            <a href="recuperar" class="text-sm text-green-600 hover:text-green-700">Olvidaste tu contraseña?</a>
+          <div class="mb-4">
+            <label for="contrasena" class="block mb-2 text-sm font-medium"></label>
+            <input
+              id="contrasena"
+              type="password"
+              class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+              placeholder="Confirmar Contraseña"
+            />
+            <span id="contrasena-error" class="text-red-500 text-sm"></span>
           </div>
-        </div>
-
-        <!-- Botón de Iniciar Sesión -->
-        <div id="botonDiv">
-          <button
+          <div class="flex items-center mb-4">
+            <input id="recordar" class="mr-2" type="checkbox" />
+            <label for="recordar" class="text-sm font-medium">Recordar contraseña</label>
+          </div>
+          <button 
             type="submit"
-            class="w-full px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:ring-green-500 focus:ring-1"
+            class="px-4 py-2  text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:ring-green-500 focus:ring-1"
           >
-            Iniciar Sesión
+            Recuperar Contraseña
           </button>
-        </div>
-
-        <!-- Crear Cuenta -->
-        <div id="crearCuentaDiv" class="text-center">
-          <a href="inscribirtePrueba" class="text-sm text-green-600 hover:text-green-700">Crear Cuenta</a>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
 
   <script>
-    document.getElementById("loginForm").addEventListener('submit', function(event) {
+    document.getElementById('password-recovery-form').addEventListener('submit', function(event) {
       event.preventDefault();
 
-      const usuario = document.getElementById('usuario').value;
+      const contraseña = document.getElementById('contraseña').value;
       const contrasena = document.getElementById('contrasena').value;
+      let valid = true;
 
-      const usuarioError = document.getElementById('usuarioError');
-      const contrasenaError = document.getElementById('contrasenaError');
+      // Restablecer mensajes de error
+      document.getElementById('contraseña-error').textContent = '';
+      document.getElementById('contrasena-error').textContent = '';
 
-      let valido = true;
-
-      // Validación del correo electrónico
-      if (!usuario.includes("@")) {
-        usuarioError.classList.remove('hidden');
-        valido = false;
-      } else {
-        usuarioError.classList.add('hidden');
+      // Comprobar si las contraseñas coinciden
+      if (contraseña !== contrasena) {
+        document.getElementById('contrasena-error').textContent = 'Las contraseñas no coinciden.';
+        valid = false;
       }
 
-      // Validación de la contraseña
-      if (contrasena.length < 8) {
-        contrasenaError.classList.remove('hidden');
-        valido = false;
-      } else {
-        contrasenaError.classList.add('hidden');
+      // Compruebe si la contraseña cumple con los criterios
+      const passwordCriteria = /^(?=.*[A-Z])(?=.*\d).{8,}$/;
+      if (!passwordCriteria.test(contraseña)) {
+        document.getElementById('contraseña-error').textContent = 'La contraseña debe tener al menos 8 caracteres, una letra mayúscula y un número.';
+        valid = false;
       }
 
-      // Si es válido, envía los datos usando fetch
-      if (valido) {
-        const data = {
-          usuario: usuario,
-          contrasena: contrasena
-        };
-
-        fetch('http://localhost:PORT/api/register', { 
-  method: 'POST', 
-  body: JSON.stringify(data), 
-  headers: { 'Content-Type': 'application/json' } 
-})
-
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then(data => {
-          console.log('Success:', data);
-          // Aquí puedes manejar la redirección o mostrar un mensaje de éxito
-        })
-        .catch(error => console.error('Error:', error));
+      if (valid) {
+        // Realice el envío del formulario o su procesamiento posterior aquí
+        alert('Contraseña actualizada con éxito.');
       }
     });
   </script>
-
 </body>
 </html>
