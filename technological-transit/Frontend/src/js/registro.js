@@ -89,10 +89,17 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!valid) {
                 return;
             }
+console.log('datos de nombre',nombreValue)
+console.log('datos de correo',correoValue)
+console.log('datos de contraseña',contrasenaValue)
+console.log('datos de numero',numeroDcValue)
+
+
 
             // Enviar los datos al servidor si todo es válido
             try {
                 const response = await fetch('http://localhost:4000/api/register', { // URL completa al servidor backend
+                    
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -102,10 +109,12 @@ document.addEventListener('DOMContentLoaded', function() {
                         correo: correoValue,
                         contraseña: contrasenaValue,
                         documento: numeroDcValue,
-                        idrol: 1, // Ajusta el valor según corresponda
+                        rol:'1',
+                     
+   
                     }),
                 });
-            
+                console.log('datos de numero',idrol)
                 const result = await response.json();
             
                 if (response.ok) {

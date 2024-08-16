@@ -18,8 +18,8 @@ router.get('/usuario', async (req, res) => {
 router.post('/register', async (req, res) => {
     try {
         console.log('Datos recibidos en la solicitud de registro:', req.body);
-        const { nombre, contraseña, documento, correo, idrol } = req.body;
-        const newPerson = await register({ nombre, contraseña, documento, correo, idrol });
+        const { nombre, contraseña, documento, correo, rol } = req.body;
+        const newPerson = await register({ nombre, contraseña, documento, correo, rol });
         res.status(201).json(newPerson);
     } catch (error) {
         console.error('Error al registrar persona:', error);
