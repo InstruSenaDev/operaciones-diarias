@@ -89,17 +89,19 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!valid) {
                 return;
             }
-console.log('datos de nombre',nombreValue)
-console.log('datos de correo',correoValue)
-console.log('datos de contraseña',contrasenaValue)
-console.log('datos de numero',numeroDcValue)
 
+            // Definir la variable idrol, ya que es mencionada en el código
+            const idrol = '1'; // Valor de ejemplo; ajusta según sea necesario
 
+            console.log('datos de nombre', nombreValue);
+            console.log('datos de correo', correoValue);
+            console.log('datos de contraseña', contrasenaValue);
+            console.log('datos de numero', numeroDcValue);
+            console.log('datos de idrol', idrol); // Ahora idrol está definido
 
             // Enviar los datos al servidor si todo es válido
             try {
                 const response = await fetch('http://localhost:4000/api/register', { // URL completa al servidor backend
-                    
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -109,14 +111,12 @@ console.log('datos de numero',numeroDcValue)
                         correo: correoValue,
                         contraseña: contrasenaValue,
                         documento: numeroDcValue,
-                        rol:'1',
-                     
-   
+                        rol: idrol, // Enviar idrol en lugar de '1' como texto
                     }),
                 });
-                console.log('datos de numero',idrol)
+
                 const result = await response.json();
-            
+
                 if (response.ok) {
                     // Redirigir al usuario a la página de inicio después del registro exitoso
                     window.location.href = '/inicio';

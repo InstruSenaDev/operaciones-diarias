@@ -15,23 +15,19 @@ async function getAllUsuario() {
     }
 }
 
-// Función para registrar una nueva persona
-async function register({ nombre, contraseña, documento, correo, idrol }) {
+app.post('/api/register', async (req, res) => {
     try {
-        console.log('Datos recibidos en register:', { nombre, contraseña, documento, correo, idrol });
-  
-        const client = await pool.connect();
-        const result = await client.query(
-            'INSERT INTO usuario (nombre, documento, contraseña, correo, idrol) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-            [nombre, documento, contraseña, correo, idrol]
-        );
-        client.release();
-        console.log('Persona registrada con éxito:', result.rows[0]);
-        return result.rows[0];
-    } catch (error) {
-        console.error('Error al registrar persona:', error);
-        throw error;
-    }
-}
+        const { nombre, correo, contraseña, documento, rol } = req.body;
 
-export { register, getAllUsuario };
+        console.log('Datos recibidos:', { nombre, correo, contraseña, documento, rol });
+
+        // Lógica para guardar los datos en la base de datos
+        // Ejemplo: await database.saveUser({ nombre, correo, contraseña, documento, rol });
+
+        res.status(201).json({ message: 'Registro exitoso' });
+    } catch (error) {
+        console.error('Error en el servidor:', error);
+        res.status(500).json({ error: 'Error en el servidor' });
+    }
+});
+ 
