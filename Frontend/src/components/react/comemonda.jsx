@@ -5,12 +5,12 @@ import { Divider, TextInput } from '@tremor/react';
 export default function Example() {
   return (
     <>
-      <div className="sm:mx-auto sm:max-w-2xl">
+      <div className="sm:mx-auto sm:max-w-5xl">
         <h3 className="text-tremor-title font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">
-          Register to workspace
+     Registro 
         </h3>
         <p className="mt-1 text-tremor-default leading-6 text-tremor-content dark:text-dark-tremor-content">
-          Take a few moments to register for your company's workspace
+          
         </p>
         <form action="#" method="post" className="mt-8">
           <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
