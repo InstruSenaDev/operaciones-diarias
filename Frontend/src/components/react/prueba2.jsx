@@ -22,7 +22,7 @@ export default function Example() {
     }
 
     // Validar Ingresos
-    const ingresos = parseFloat(formData.get('ingresos'));
+    const ingresos = parseFloat(formData.get('ingeros'));
     if (isNaN(ingresos) || ingresos < 0) {
       errors.ingeros = 'Por favor ingresa un valor positivo para los ingresos.';
     }
@@ -44,7 +44,7 @@ export default function Example() {
   return (
     <>
       <div className="sm:mx-auto sm:max-w-5xl">
-        <h3 className="text-tremor-title font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong text-center text-3xl font-bold drop-shadow-lg">
+        <h3 className="text-tremor-title font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">
           Registro
         </h3>
         <form onSubmit={validateForm} className="mt-8">
@@ -54,7 +54,7 @@ export default function Example() {
                 htmlFor="first-name"
                 className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
               >
-               
+                
               </label>
               <TextInput
                 type="number"
@@ -68,33 +68,19 @@ export default function Example() {
             </div>
 
             <div className="col-span-full sm:col-span-3">
-  <label
-    htmlFor="mes"
-    className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
-  >
-    
-  </label>
-  <select
-    id="mes"
-    name="mes"
-    className="mt-6 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-    required
-  >
-    <option value="">Selecciona un mes</option>
-    <option value="1">Enero</option>
-    <option value="2">Febrero</option>
-    <option value="3">Marzo</option>
-    <option value="4">Abril</option>
-    <option value="5">Mayo</option>
-    <option value="6">Junio</option>
-    <option value="7">Julio</option>
-    <option value="8">Agosto</option>
-    <option value="9">Septiembre</option>
-    <option value="10">Octubre</option>
-    <option value="11">Noviembre</option>
-    <option value="12">Diciembre</option>
-  </select>
-              
+              <label
+                htmlFor="dia"
+                className="text-tremor-default font-medium text-tremor-content-strong dark:text-dark-tremor-content-strong"
+              ></label>
+              <TextInput
+                type="number"
+                id="fecha"
+                name="mes"
+                placeholder="Mes"
+                className="mt-2"
+                required
+              />
+              {errors.mes && <p className="text-red-500">{errors.mes}</p>}
             </div>
 
             <div className="col-span-full">
@@ -107,7 +93,7 @@ export default function Example() {
               <TextInput
                 type="number"
                 id="ingresos"
-                name="ingresos"
+                name="ingeros"
                 placeholder="Ventas O Servicios"
                 className="mt-2"
                 required
@@ -125,14 +111,13 @@ export default function Example() {
               <TextInput
                 type="text"
                 id="address"
-                name="egresos"
+                name="address"
                 placeholder="Compras"
                 className="mt-2"
               />
             </div>
           </div>
           <Divider />
-          
           <div className="flex items-center justify-end space-x-4">
             <button
               type="button"
