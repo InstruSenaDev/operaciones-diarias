@@ -44,8 +44,8 @@ export default function Example() {
   return (
     <>
       <div className="sm:mx-auto sm:max-w-5xl">
-        <h3 className="text-tremor-title font-semibold text-tremor-content-strong dark:text-dark-tremor-content-strong">
-          Registro
+        <h3 className=" text-center text-4xl">
+          Libro
         </h3>
         <form onSubmit={validateForm} className="mt-8">
           <div className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-6">
