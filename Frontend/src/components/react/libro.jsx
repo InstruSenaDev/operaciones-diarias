@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "react";
 
 const LibroOperaciones = () => {
   const [form, setForm] = useState({
@@ -11,70 +12,51 @@ const LibroOperaciones = () => {
     ingresoTotal: "",
     total: ""
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [errors, setErrors] = useState({});
-
+  // Validar que los campos no sean negativos
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    // Validación mientras el usuario escribe
-    if (value < 0) {
-      setErrors({
-        ...errors,
-        [name]: "El valor no puede ser negativo."
-      });
-    } else {
-      // Limpiar el error si el valor es válido
-      setErrors({
-        ...errors,
-        [name]: ""
+    
+    if (!isNaN(value)) {
+      const newValue = value >= 0 ? value : ""; // Evitar números negativos
+      setForm({
+        ...form,
+        [name]: newValue
       });
     }
-
-    // Actualizar el valor en el formulario
-    setForm({
-      ...form,
-      [name]: value
-    });
   };
 
-  const validateForm = () => {
-    const newErrors = {};
+  // Calcular el total automáticamente
+  useEffect(() => {
+    const totalSum = 
+      Number(form.ingresosMenores || 0) +
+      Number(form.egresos || 0) +
+      Number(form.compras || 0) +
+      Number(form.gastos || 0);
+      
+    setForm((prevForm) => ({
+      ...prevForm,
+      total: totalSum.toFixed(2) // Actualizar el total
+    }));
+  }, [form.ingresosMenores, form.egresos, form.compras, form.gastos]);
 
-    // Validación de campos vacíos y números negativos
-    Object.keys(form).forEach((field) => {
-      if (form[field] === "") {
-        newErrors[field] = "Este campo es obligatorio.";
-      } else if (Number(form[field]) < 0) {
-        newErrors[field] = "El valor no puede ser negativo.";
-      }
-    });
-
-    return newErrors;
-  };
-
+  // Manejar el registro
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const newErrors = validateForm();
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-    } else {
-      // Si no hay errores, enviar el formulario
-      console.log("Formulario enviado con éxito:", form);
-      setErrors({});
-    }
+    setIsModalOpen(true);
+    // Aquí puedes agregar la lógica para registrar los datos
+    console.log("Datos registrados:", form);
   };
 
   return (
-    <div className="flex justify-center items-center h-screen bg-gray-100">
+    <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-4xl">
         <h1 className="text-2xl font-bold mb-6 text-center">Libro</h1>
 
         <form onSubmit={handleSubmit}>
-          {/* Primera fila: Ingresos Menores y Egresos */}
-          <div className="grid grid-cols-2 gap-4 mb-4">
+          {/* First Row: Ingresos Menores and Egresos */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div>
               <label className="block font-semibold mb-2">Ingresos Menores</label>
               <input
@@ -85,9 +67,6 @@ const LibroOperaciones = () => {
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                 placeholder="Ingresos Menores"
               />
-              {errors.ingresosMenores && (
-                <p className="text-red-500 text-sm mt-1">{errors.ingresosMenores}</p>
-              )}
             </div>
 
             <div>
@@ -100,14 +79,11 @@ const LibroOperaciones = () => {
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                 placeholder="Egresos"
               />
-              {errors.egresos && (
-                <p className="text-red-500 text-sm mt-1">{errors.egresos}</p>
-              )}
             </div>
           </div>
 
-          {/* Segunda fila: Compras y Gastos */}
-          <div className="grid grid-cols-2 gap-4 mb-4">
+          {/* Second Row: Compras and Gastos */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div>
               <label className="block font-semibold mb-2">Compras</label>
               <input
@@ -118,9 +94,6 @@ const LibroOperaciones = () => {
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                 placeholder="Compras"
               />
-              {errors.compras && (
-                <p className="text-red-500 text-sm mt-1">{errors.compras}</p>
-              )}
             </div>
 
             <div>
@@ -133,14 +106,11 @@ const LibroOperaciones = () => {
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                 placeholder="Gastos"
               />
-              {errors.gastos && (
-                <p className="text-red-500 text-sm mt-1">{errors.gastos}</p>
-              )}
             </div>
           </div>
 
-          {/* Tercera fila: Concepto de Gasto y Número de Recibo */}
-          <div className="grid grid-cols-2 gap-4 mb-4">
+          {/* Third Row: Concepto de Gasto and Número de Recibo */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-4">
             <div>
               <label className="block font-semibold mb-2">Concepto de Gasto</label>
               <input
@@ -151,29 +121,23 @@ const LibroOperaciones = () => {
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                 placeholder="Concepto de Gasto"
               />
-              {errors.conceptoGasto && (
-                <p className="text-red-500 text-sm mt-1">{errors.conceptoGasto}</p>
-              )}
             </div>
 
             <div>
               <label className="block font-semibold mb-2">Número de Recibo</label>
               <input
-                type="number"
+                type="text"
                 name="numeroRecibo"
                 value={form.numeroRecibo}
                 onChange={handleChange}
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                 placeholder="Número de Recibo"
               />
-              {errors.numeroRecibo && (
-                <p className="text-red-500 text-sm mt-1">{errors.numeroRecibo}</p>
-              )}
             </div>
           </div>
 
-          {/* Cuarta fila: Ingreso Total y Total */}
-          <div className="grid grid-cols-2 gap-4 mb-6">
+          {/* Fourth Row: Ingreso Total and Total */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
             <div>
               <label className="block font-semibold mb-2">Ingreso Total</label>
               <input
@@ -184,35 +148,23 @@ const LibroOperaciones = () => {
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                 placeholder="Ingreso Total"
               />
-              {errors.ingresoTotal && (
-                <p className="text-red-500 text-sm mt-1">{errors.ingresoTotal}</p>
-              )}
             </div>
 
             <div>
               <label className="block font-semibold mb-2">Total</label>
               <input
-                type="number"
+                type="text"
                 name="total"
                 value={form.total}
-                onChange={handleChange}
+                readOnly
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
                 placeholder="Total"
               />
-              {errors.total && (
-                <p className="text-red-500 text-sm mt-1">{errors.total}</p>
-              )}
             </div>
           </div>
 
-          {/* Botones */}
-          <div className="flex justify-between">
-            <button
-              type="button"
-              className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400"
-            >
-              Cancelar
-            </button>
+          {/* Buttons */}
+          <div className="flex justify-end">
             <button
               type="submit"
               className="px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
@@ -221,10 +173,23 @@ const LibroOperaciones = () => {
             </button>
           </div>
         </form>
+
+        <AlertDialog open={isModalOpen} onOpenChange={setIsModalOpen}>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Registro Exitoso</AlertDialogTitle>
+              <AlertDialogDescription>
+                Los datos han sido registrados correctamente.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogAction onClick={() => setIsModalOpen(false)}>Aceptar</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
     </div>
   );
 };
 
 export default LibroOperaciones;
-
