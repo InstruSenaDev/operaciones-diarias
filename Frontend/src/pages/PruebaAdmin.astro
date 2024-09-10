@@ -1,0 +1,25 @@
+---
+// ApprenticeManagement.astro
+import React from 'react';
+import { ApprenticeManagementReact } from '../components/react/ApprenticeManagementReact';
+---
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administrador - LROD</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<div class="container mx-auto p-4">
+  <ApprenticeManagementReact client:load />
+</div>
+
+<script>
+  // Cualquier JavaScript del lado del cliente que necesites
+</script>
+
+<style>
+  /* Estilos específicos de Astro si los necesitas */
+</style>
