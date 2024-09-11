@@ -14,17 +14,25 @@ router.get('/usuario', async (req, res) => {
     }
 });
 
-// Ruta para registrar una nueva persona
-router.post('/register', async (req, res) => {
+
+
+router.post("/register", async (req, res) => {
+    const {nombre, contraseña, documento, correo, rol  } = req.body;
+
     try {
-        console.log('Datos recibidos en la solicitud de registro:', req.body);
-        const { nombre, contraseña, documento, correo, rol } = req.body;
-        const newPerson = await register({ nombre, contraseña, documento, correo, rol });
-        res.status(201).json(newPerson);
+        
+     
+
+        const subirnombre = await data.query("INSERT INTO usuario (nombre, contraseña, documento, correo, rol) VALUES($1, $2, $3, $4, $5) RETURNING *",
+            [nombre, contraseña, documento, correo, rol ]);
+
+        console.log(subirnombre);
+        res.json(subirnombre);
     } catch (error) {
-        console.error('Error al registrar persona:', error);
-        res.status(500).json({ error: 'Internal server error', details: error.message });
+        console.error("Error al agregar usuario:", error);
+        res.status(500).json({ error: "Error al agregar usuario" });
     }
 });
+
 
 export default router;
