@@ -1,0 +1,29 @@
+---
+import Example from "../components/react/prueba2";
+import Menu from '../components/menu.astro';
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>control</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="w-full bg-green-500 p-4 flex justify-between items-center">
+      <img src="../img/logo.png" class="w-10 ">
+      <button><img src="../img/perfil.png" class="w-20 ">Alexander</button>
+    </div>
+    <Menu/>
+
+
+     
+
+<div class=""> 
+      <Example client:visible/>
+  </div>
+
+</body>

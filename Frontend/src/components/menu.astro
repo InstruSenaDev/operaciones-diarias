@@ -1,0 +1,71 @@
+---
+import Items1 from "./Itemss1.astro";
+---
+
+        <style>
+            body {
+                font-family: "Josefin Slab", serif;
+                font-optical-sizing: auto;
+            }
+
+            .sidebar {
+                width: 60px; /* Ancho inicial */
+                transition: width 0.3s ease, transform 0.3s ease;
+            }
+
+            .sidebar.open {
+                width: 200px; /* Ancho expandido al abrir */
+            }
+
+            .sidebar ul span {
+                display: none; /* Oculta los nombres de los proyectos inicialmente */
+            }
+
+            .sidebar.open ul span {
+                display: inline-block; /* Muestra los nombres de los proyectos al abrir */
+            }
+
+            .sidebar:hover {
+                width: 200px; /* Ancho expandido al pasar el cursor */
+            }
+        </style>
+    </head>
+    <body >
+        <!-- Botón para abrir el sidebar en pantallas pequeñas -->
+        <button id="menu-button" class="md:hidden p-4 fixed top-0 left-0 z-50">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+            </svg>
+        </button>
+
+        <aside id="sidebar" class="sidebar fixed top-0 left-0 z-40 h-full bg-green-300 transition-transform transform -translate-x-full md:translate-x-0">
+            <div class="h-full px-3 py-4 overflow-y-auto bg-[#A3E784]">
+                <a href="#" class="flex items-center ps-2.5 mb-5"></a>
+                <ul class="space-y-3 font-medium">
+                    <div class="flex items-center">
+                        <img src="../img/LROD.png" alt="Logo" class="w-56 h-30 pb-2">
+                        <span class="text-xl font-semibold whitespace-nowrap dark:text-black ml-2 pl-2">LROD</span>
+                    </div>
+                    <Items1 icon="fas fa-home" href="home" label="Home" />
+                    <Items1 icon="fa-solid fa-user" href="xomo" label="Guardado" />
+                    <Items1 icon="fas fa-home" href="control_registro" label="Control" />
+                    
+                </ul>
+            </div>
+        </aside>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const menuButton = document.getElementById('menu-button');
+                const sidebar = document.getElementById('sidebar');
+
+                if (menuButton && sidebar) {
+                    menuButton.addEventListener('click', () => {
+                        sidebar.classList.toggle('-translate-x-full');
+                        sidebar.classList.toggle('open');
+                    });
+                }
+            });
+        </script>
+    </body>
+</html>

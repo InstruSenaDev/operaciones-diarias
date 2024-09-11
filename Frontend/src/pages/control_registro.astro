@@ -1,0 +1,228 @@
+---
+import PerfilMenu from"../../components/perfilMenu.astro";
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>control</title>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+
+  <body>
+  <div class="w-full bg-green-500 p-4 flex justify-between items-center">
+    <img src="../img/logo.png" class="w-10 ">
+    <button><img src="../img/perfil.png" class="w-20 ">Alexander</button>
+    
+    </div>
+<div class="container mx-auto">
+<p class="text-4xl text-black flex justify-center py-14"></p>
+
+    <div class="form-container bg-white p-52 rounded-lg shadow-lg w-full py-40">
+    <div class="grid grid-cols-3 gap-4">
+      <div class="flex flex-col">
+        <label for="dia" class="block mb-4 text-sm font-medium"></label>
+    </label>
+   
+    <input
+      type="number"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Dia:"
+    />
+      </div>
+      <div class="flex flex-col">
+        <label for="mes" class="block mb-4 text-sm font-medium"></label>
+    </label>
+    <select id="month-select" class="w-full px-4 py-2.5 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200">
+      <option value="" disabled selected>Selecciona un mes</option>
+      <option value="1">Enero</option>
+      <option value="2">Febrero</option>
+      <option value="3">Marzo</option>
+      <option value="4">Abril</option>
+      <option value="5">Mayo</option>
+      <option value="6">Junio</option>
+      <option value="7">Julio</option>
+      <option value="8">Agosto</option>
+      <option value="9">Septiembre</option>
+      <option value="10">Octubre</option>
+      <option value="11">Noviembre</option>
+      <option value="12">Diciembre</option>
+    </select>    
+
+      </div>
+      <div class="flex flex-col">
+        <label for="año" class="block mb-4 text-sm font-medium"></label>
+    </label>
+    <input
+  id="year-input"
+  type="number"
+  class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+  placeholder="Año:"
+/>
+
+      </div>
+    </div>
+  
+    <div class="flex flex-col mb-4">
+      <label for="numeroRecibo" class="block mb-4 text-sm font-medium"></label>
+    </label>
+    <input
+      type="number"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Numero de recibo:"
+    />
+    </div>
+  
+    <h2>Ingresos</h2>
+  
+    <div class="grid grid-cols-2 gap-4">
+      <div class="flex flex-col">
+        <label for="ventasServicios" class="block mb-4 text-sm font-medium"></label>
+    </label>
+    <input
+      type="number"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Ventas o servicios:"
+    />
+      </div>
+     
+    </div>
+  
+    <h2>Egresos</h2>
+  
+    <div class="grid grid-cols-2 gap-4">
+      <div class="flex flex-col">
+        <label for="compras" class="block mb-4 text-sm font-medium"></label>
+    </label>
+    <input
+      type="number"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Compras:"
+    />
+      </div>
+      <div class="flex flex-col">
+        <label for="gastos" class="block mb-4 text-sm font-medium"></label>
+    </label>
+    <input
+      type="number"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Gastos"
+    />
+      </div>
+    </div>
+  
+    <div class="flex flex-col">
+      <label for="conceptoGasto" class="block mb-4 text-sm font-medium"></label>
+    </label>
+    <input
+      type="text"
+      class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+      placeholder="Concepto de gasto:"
+    />
+    </div>
+    <h2>Total:</h2>
+    <div class="flex flex-col">
+      <label for="totalMes" class="block mb-4 text-sm font-medium"></label>
+  </label>
+  <input
+    type="number"
+    class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-green-500 focus:ring-1 bg-gray-200"
+    placeholder="Total mes:"
+  />
+  <div class="flex justify-end py-10">
+    <button class="bg-green-500 text-white font-bold py-2 px-4 rounded shadow-md">
+      Registrar
+    </button>
+  </div>
+    </div>
+  </div>
+  
+ 
+  </a>
+  <body class="bg-gray-100">
+  </body>
+
+  <script>
+    // Seleccionar todos los campos de entrada tipo número
+    document.querySelectorAll('input[type="number"]').forEach(function(input) {
+      // Añadir un evento de entrada para cada campo
+      input.addEventListener('input', function(e) {
+        const value = parseInt(e.target.value, 10); // Convertir el valor a un número entero
+  
+        // Validar que el valor esté entre 1 y 31
+        if (value < 1 || value > 31 || isNaN(value)) {
+          e.target.setCustomValidity('Por favor, ingrese un número entre 1 y 31.');
+          e.target.classList.add('border-red-500');
+          e.target.classList.remove('border-green-500');
+        } else {
+          e.target.setCustomValidity(''); // Borrar mensaje de error
+          e.target.classList.add('border-green-500');
+          e.target.classList.remove('border-red-500');
+        }
+  
+        // Re-validar el formulario para mostrar el mensaje de error
+        e.target.reportValidity();
+      });
+    });
+  </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const select = document.getElementById('month-select');
+
+    select.addEventListener('change', function(e) {
+      const selectedValue = e.target.value;
+
+      // Aquí puedes agregar lógica adicional si es necesario
+      console.log('Mes seleccionado:', selectedValue);
+
+      // Ejemplo: Cambiar el color del borde basado en la selección
+      if (selectedValue) {
+        select.classList.add('border-green-500');
+        select.classList.remove('border-red-500');
+      } else {
+        select.classList.add('border-red-500');
+        select.classList.remove('border-green-500');
+      }
+    });
+  });
+</script>
+</script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const input = document.getElementById('year-input');
+    
+    // Obtener el año actual
+    const currentYear = new Date().getFullYear();
+    const maxYear = 2049;
+
+    input.addEventListener('input', function(e) {
+      const value = parseInt(e.target.value, 10); // Convertir el valor a un número entero
+
+      // Validar que el año esté dentro del rango permitido
+      if (value < currentYear || value > maxYear || isNaN(value)) {
+        e.target.setCustomValidity(`Por favor, ingrese un año entre fecha de la actualidad y 17/07/2049.`);
+        e.target.classList.add('border-red-500');
+        e.target.classList.remove('border-green-500');
+      } else {
+        e.target.setCustomValidity(''); // Borrar mensaje de error
+        e.target.classList.add('border-green-500');
+        e.target.classList.remove('border-red-500');
+      }
+
+      // Re-validar el formulario para mostrar el mensaje de error
+      e.target.reportValidity();
+    });
+  });
+</script>
+
+
+  
+    </html>
+
+    
