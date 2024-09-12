@@ -13,102 +13,118 @@ document.addEventListener('DOMContentLoaded', function() {
     const togglePasswordRegistro = document.getElementById('togglePasswordRegistro');
     const togglePasswordConfirmacion = document.getElementById('togglePasswordConfirmacion');
 
-    function togglePasswordVisibility(inputElement, toggleButton) {
-        if (toggleButton) {
-            toggleButton.addEventListener('click', function() {
-                const type = inputElement.getAttribute('type') === 'password' ? 'text' : 'password';
-                inputElement.setAttribute('type', type);
-            });
-        }
+    // Función para mostrar u ocultar la contraseña
+    if (togglePasswordRegistro) {
+        togglePasswordRegistro.addEventListener('click', function() {
+            if (contrasenaRegistro) {
+                const type = contrasenaRegistro.getAttribute('type') === 'password' ? 'text' : 'password';
+                contrasenaRegistro.setAttribute('type', type);
+            }
+        });
     }
 
-    togglePasswordVisibility(contrasenaRegistro, togglePasswordRegistro);
-    togglePasswordVisibility(confirmarContrasena, togglePasswordConfirmacion);
-
-    function showError(element, message) {
-        element.textContent = message;
+    if (togglePasswordConfirmacion) {
+        togglePasswordConfirmacion.addEventListener('click', function() {
+            if (confirmarContrasena) {
+                const type = confirmarContrasena.getAttribute('type') === 'password' ? 'text' : 'password';
+                confirmarContrasena.setAttribute('type', type);
+            }
+        });
     }
 
+    // Validación del formulario al enviar
     if (formu) {
         formu.addEventListener('submit', async function(event) {
             event.preventDefault(); // Evitar el comportamiento por defecto del formulario
             let valid = true;
 
-            [nombreError, correoError, contrasenaError, confirmarContrasenaError, numeroDcError].forEach(el => el.textContent = '');
+            // Limpiar mensajes de error
+            if (nombreError) nombreError.textContent = '';
+            if (correoError) correoError.textContent = '';
+            if (contrasenaError) contrasenaError.textContent = '';
+            if (confirmarContrasenaError) confirmarContrasenaError.textContent = '';
+            if (numeroDcError) numeroDcError.textContent = '';
 
-            const nombreValue = nombre.value.trim();
+            // Validación del nombre
+            const nombreValue = nombre ? nombre.value.trim() : '';
             if (!nombreValue) {
                 valid = false;
-                showError(nombreError, 'Ingrese un nombre válido.');
+                if (nombreError) nombreError.textContent = 'Ingrese un nombre válido.';
             }
 
-            const correoValue = correoRegistro.value.trim();
+            // Validación del correo electrónico
+            const correoValue = correoRegistro ? correoRegistro.value.trim() : '';
             if (!correoValue) {
                 valid = false;
-                showError(correoError, 'El correo electrónico es requerido.');
+                if (correoError) correoError.textContent = 'El correo electrónico es requerido.';
             } else if (!/\S+@\S+\.\S+/.test(correoValue)) {
                 valid = false;
-                showError(correoError, 'El correo electrónico debe tener formato válido.');
+                if (correoError) correoError.textContent = 'El correo electrónico debe tener formato válido.';
             }
 
-            const contrasenaValue = contrasenaRegistro.value;
+            // Validación de la contraseña
+            const contrasenaValue = contrasenaRegistro ? contrasenaRegistro.value : '';
             if (!contrasenaValue || contrasenaValue.length < 8 || !/[A-Z]/.test(contrasenaValue)) {
                 valid = false;
                 if (!contrasenaValue) {
-                    showError(contrasenaError, 'La contraseña es requerida.');
+                    if (contrasenaError) contrasenaError.textContent = 'La contraseña es requerida.';
                 } else if (contrasenaValue.length < 8) {
-                    showError(contrasenaError, 'La contraseña debe tener al menos 8 caracteres.');
+                    if (contrasenaError) contrasenaError.textContent = 'La contraseña debe tener al menos 8 caracteres.';
                 } else if (!/[A-Z]/.test(contrasenaValue)) {
-                    showError(contrasenaError, 'La contraseña debe contener al menos una letra mayúscula.');
+                    if (contrasenaError) contrasenaError.textContent = 'La contraseña debe contener al menos una letra mayúscula.';
                 }
             }
 
-            const confirmarContrasenaValue = confirmarContrasena.value;
+            // Validación de la confirmación de contraseña
+            const confirmarContrasenaValue = confirmarContrasena ? confirmarContrasena.value : '';
             if (contrasenaValue !== confirmarContrasenaValue) {
                 valid = false;
-                showError(confirmarContrasenaError, 'Las contraseñas no coinciden.');
+                if (confirmarContrasenaError) confirmarContrasenaError.textContent = 'Las contraseñas no coinciden.';
             }
 
-            const numeroDcValue = numeroDc.value.trim();
+            // Validación del número de documento
+            const numeroDcValue = numeroDc ? numeroDc.value.trim() : '';
             if (!numeroDcValue || isNaN(parseInt(numeroDcValue)) || numeroDcValue.length !== 10) {
                 valid = false;
-                showError(numeroDcError, 'Ingrese un número de documento válido de 10 dígitos.');
+                if (numeroDcError) numeroDcError.textContent = 'Ingrese un número de documento válido de 10 dígitos.';
             }
 
             if (!valid) {
                 return;
             }
 
-            const idrol = '1';
-            const formData = {
-                'nombre': nombreValue,
-                'correo': correoValue,
-                'contraseña': contrasenaValue,
-                'documento': numeroDcValue,
-                 'rol': idrol,
-            };
+            console.log('datos de nombre',nombreValue);
+            console.log('datos de correo',correoValue);
+            console.log('datos de contraseña',contrasenaValue);
+            console.log('datos de numero',numeroDcValue);
+            console.log('datos de idrol', idrol );
 
+
+            // Enviar los datos al servidor
             try {
+                const response = await fetch('/api/register', { // Ajustado el endpoint
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        nombrecompleta: nombreValue,
+                        correo: correoValue,
+                        contraseña: contrasenaValue,
+                        Ndedocumento: numeroDcValue,
+                        idrol: 1,// Ajusta el valor según corresponda
+                    }),
+                });
 
-                            // Enviar la solicitud para enviar el código de verificación al correo del usuario
-                            const response = await fetch('http://localhost:4000/api/register', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/json',
-                                },
-                                body: JSON.stringify({ formData }),
-                            });
-            
-                            if (response.ok) {
-                               
+                const result = await response.json();
+
+                if (response.ok) {
+                    // Redirigir al usuario a la página de inicio después del registro exitoso
                     window.location.href = '/inicio';
-                
-            
-                            } else {
-                                console.error('Error en el registro:', result.error);
-                                alert('Error en el registro: ' + result.error);
-                            }
-                        
+                } else {
+                    console.error('Error en el registro:', result.error);
+                    alert('Error en el registro: ' + result.error);
+                }
             } catch (error) {
                 console.error('Error al enviar la solicitud:', error);
                 alert('Error al enviar la solicitud: ' + error.message);
@@ -116,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Función para resetear el formulario si se vuelve a cargar la página
     window.addEventListener('pageshow', function(event) {
         if (event.persisted && formu) {
             formu.reset();
