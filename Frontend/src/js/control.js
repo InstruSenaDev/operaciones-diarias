@@ -1,4 +1,3 @@
-var clic = 1;
 const boton = document.querySelector(".boton");
 const sideBar = document.querySelector("#ostia");
 boton?.addEventListener("click", ()=>{

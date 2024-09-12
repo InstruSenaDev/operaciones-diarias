@@ -1,4 +1,3 @@
-
   // Obtenemos la fecha actual
   const currentDate = new Date();
 

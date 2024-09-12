@@ -1,0 +1,223 @@
+body{background-color: #ffffff;
+    color: #000;}
+    
+    
+    .cubo {
+      height: 1164px;
+    }
+    
+    .cubo1 {
+      border: 1px solid #50B165;
+      height: 70px;
+      width: 1855px;
+      background-color: #50B165;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .boton {
+      display: flex;
+      width: 50px;
+      height: 50px;
+      align-items: center;
+      justify-content: center;
+      margin-left: 10px;
+    }
+    
+    .butun {
+      height: 50px;
+    
+    }
+    
+    .persona {
+      display: flex;
+      height: 50px;
+      width: 50px;
+      margin-right: 10px;
+      align-items: center;
+      justify-content: center;
+      border-top-left-radius: 30px;
+      border-bottom-left-radius: 30px;
+      border-top-right-radius: 30px;
+      border-bottom-right-radius: 30px;
+    }
+    
+    .cubo2 {
+      display: flex;
+      height: 880px;
+      justify-content: space-between;
+    }
+    
+    .d1 {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      border: 1px solid #50B165;
+      height: 894px;
+      width: 290px;
+      background-color: #50B165;
+    }
+    
+    
+    #miTabla tr:hover {
+      background-color: #b5e2bf;
+      }
+      
+    
+    .libros {
+      border: 1px solid white;
+      background-color: white;
+      height: 200px;
+      width: 250px;
+      margin: 10px;
+    }
+    
+    .mostrarSide {
+      display: block;
+    }
+    
+    .per{width: 60px;
+      height: 60px;}
+    
+    .d3 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 1248px;
+      height: 999px;
+      margin-left: 290px;
+    }
+    
+    .año {
+      margin-bottom: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #50b165;
+    background-color: #50b165;
+    color: white;
+    width: 907px;
+    height: 35px;
+    font-size: 30px;
+    }
+    
+    .como {
+      margin-top: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid #50B165;
+      background-color: #50B165;
+      color: white;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+      width: 907px;
+      height: 40px;
+      font-size: 31px;
+      margin-bottom: 3px;
+    }
+    
+    
+    
+    .total {
+    margin-top: 3px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 906px;
+    font-size: 31px;
+    }
+    
+    .uno {
+      display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+    background-color: #50b165;
+    color: white;
+    font-size: 15px;
+    width: 220px;
+    height: 40px;
+    }
+    
+    .dos {
+      display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #50b165;
+    border-right: 1px solid white;
+    color: white;
+    width:  199px;
+    height: 40px;
+    font-size: 29px;
+    }
+    
+    .tres {
+      display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid white;
+    background-color: #50b165;
+    color: white;
+    font-size: 15px;
+    width: 221px;
+    height: 40px;
+    }
+    
+    .S{ display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #50b165;
+    width: 907px;
+    height: 30px;
+    background-color: #50b165;
+    color: white;
+    font-size: 30px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    margin-top: 3px;}
+    
+    .cabeza {
+     border: 4px solid #29793a;
+     width: 156px;
+    }
+    
+    .cuerpo{
+      border: 4px solid #50B165; 
+      height: 50px;
+    }
+    
+    @keyframes deslizamiento {
+      from {
+          bottom: 0;
+      }
+      to {
+          bottom: 100%;
+      }
+    }
+    
+    .d4{
+      animation: deslizamiento 2s linear infinite;
+    height: 470px;}
+    
+      .int{
+        color:#ffffff;
+      height: 30px;
+      width: 110px;
+      background-color: #50B165;
+      font-size: 30px;
+      }
+    
+    
+      input::placeholder{color: #ffffff}
+    
+      input{ 
+      background-color: rgba(255, 255, 255, 0);
+    color: #000;
+    border: none;}
+    
+      .celda-cero {
+    background-color: red
+    }

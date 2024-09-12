@@ -1,7 +1,7 @@
-// tailwind.config.cjs
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./src/**/*.{astro,js,jsx,ts,tsx}",
+    "./src/**/*.{astro,html,js,jsx,ts,tsx}",
     "./public/**/*.html",
   ],
   theme: {
