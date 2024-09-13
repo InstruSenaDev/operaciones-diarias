@@ -13,6 +13,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const togglePasswordRegistro = document.getElementById('togglePasswordRegistro');
     const togglePasswordConfirmacion = document.getElementById('togglePasswordConfirmacion');
 
+    // Definir idrol por si lo necesitas en otros lados.
+    const idrol = 1; // Ajusta según sea necesario
+
     // Función para mostrar u ocultar la contraseña
     if (togglePasswordRegistro) {
         togglePasswordRegistro.addEventListener('click', function() {
@@ -93,16 +96,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            console.log('datos de nombre',nombreValue);
-            console.log('datos de correo',correoValue);
-            console.log('datos de contraseña',contrasenaValue);
-            console.log('datos de numero',numeroDcValue);
-            console.log('datos de idrol', idrol );
+            console.log('Datos enviados:', {
+                nombre: nombreValue,
+                correo: correoValue,
+                contraseña: contrasenaValue,
+                numeroDocumento: numeroDcValue,
+                idrol: idrol
+            });
 
-
-            // Enviar los datos al servidor
+            // Enviar los datos al servidor si todo es valido
             try {
-                const response = await fetch('/api/register', { // Ajustado el endpoint
+                const response = await fetch('/api/registro', { // URL completa al servidor backend
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -112,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         correo: correoValue,
                         contraseña: contrasenaValue,
                         Ndedocumento: numeroDcValue,
-                        idrol: 1,// Ajusta el valor según corresponda
+                        idrol: idrol, // Usar la constante idrol
                     }),
                 });
 
