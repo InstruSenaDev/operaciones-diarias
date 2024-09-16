@@ -113,7 +113,7 @@ const DailyOperationsLog = () => {
                 />
               </div>
             </div>
-            <button type="submit" className="w-full bg-blue-500 text-white py-2 px-4 rounded-md shadow hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
+            <button type="submit" className="w-30 bg-green-500 text-white py-2 px-4 rounded-md shadow hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300">
               Agregar Operación
             </button>
           </form>
