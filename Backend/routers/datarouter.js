@@ -34,5 +34,28 @@ router.post("/register", async (req, res) => {
     }
 });
 
+// Ruta para obtener todas las operaciones
+router.get('/operaciones', async (req, res) => {
+    try {
+      const operaciones = await getAllOperaciones();
+      res.json(operaciones);
+    } catch (error) {
+      console.error('Error al obtener operaciones:', error);
+      res.status(500).json({ error: 'Error interno del servidor', details: error.message });
+    }
+  });
+  
+  // Ruta para registrar una nueva operación
+  router.post("/operaciones", async (req, res) => {
+    const { fecha, tipo, descripcion, monto, numeroRecibo } = req.body;
+  
+    try {
+      const nuevaOperacion = await registerOperacion({ fecha, tipo, descripcion, monto, numeroRecibo });
+      res.json(nuevaOperacion);
+    } catch (error) {
+      console.error("Error al agregar operación:", error);
+      res.status(500).json({ error: "Error al agregar operación" });
+    }
+  });
 
 export default router;
