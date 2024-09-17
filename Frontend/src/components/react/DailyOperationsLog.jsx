@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { validateOperationForm, isFormValid } from '../../js/validations';
+import axios from 'axios';
 
 const DailyOperationsLog = () => {
   const [operation, setOperation] = useState({
@@ -126,21 +126,21 @@ const DailyOperationsLog = () => {
           <table className="min-w-full border-collapse border border-gray-300">
             <thead className="bg-gray-50">
               <tr>
-                <th className="border p-2 text-left">Fecha</th>
-                <th className="border p-2 text-left">Tipo</th>
-                <th className="border p-2 text-left">Descripción</th>
-                <th className="border p-2 text-left">Monto</th>
-                <th className="border p-2 text-left">Número de Recibo</th>
+                <th className="border border-gray-300 p-2">Fecha</th>
+                <th className="border border-gray-300 p-2">Tipo</th>
+                <th className="border border-gray-300 p-2">Descripción</th>
+                <th className="border border-gray-300 p-2">Monto</th>
+                <th className="border border-gray-300 p-2">Número de Recibo</th>
               </tr>
             </thead>
             <tbody>
               {operationsList.map((op, index) => (
-                <tr key={index} className="hover:bg-gray-100">
-                  <td className="border p-2">{op.fecha}</td>
-                  <td className="border p-2">{op.tipo}</td>
-                  <td className="border p-2">{op.descripcion}</td>
-                  <td className="border p-2">{op.monto}</td>
-                  <td className="border p-2">{op.numero_recibo}</td>
+                <tr key={index} className="border border-gray-300">
+                  <td className="p-2">{op.fecha}</td>
+                  <td className="p-2">{op.tipo}</td>
+                  <td className="p-2">{op.descripcion}</td>
+                  <td className="p-2">{op.monto}</td>
+                  <td className="p-2">{op.numero_recibo}</td>
                 </tr>
               ))}
             </tbody>
