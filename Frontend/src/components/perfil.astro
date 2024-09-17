@@ -1,0 +1,89 @@
+---
+// Perfil.astro
+---
+
+<div class="cubo">
+    <div class="cubo1">
+      <div class="persona">
+        <img class="foto" src="../img/persona.png" alt="Persona" />
+        <p>Alexzandr_</p>
+      </div>
+      <div class="cubo2">
+        <button class="d">
+          <img class="uty" src="../img/lapiz.png" alt="Editar perfil" />
+          <p>Editar perfil</p>
+        </button>
+        <button class="d">
+          <img class="uty" src="../img/tuerca.png" alt="Ajustes" />
+          <p>Ajustes</p>
+        </button>
+        <button class="d">
+          <img class="uty" src="../img/puerta.png" alt="Cerrar Sesion" />
+          <p>Cerrar Sesion</p>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <style>
+    body { background-color: white; }
+  
+    .cubo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 402px;
+      width: 200px;
+    }
+  
+    .cubo4 {
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      height: 400px;
+      width: 400px;
+    }
+  
+    .persona {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      border: 1px solid #50B165;
+      background-color: #50B165;
+      height: 100px;
+      width: 200px;
+    }
+  
+    .cubo5 {
+      border-left: 2px solid rgb(163, 163, 163);
+      border-bottom: 2px solid rgb(163, 163, 163);
+      border-right: 2px solid rgb(163, 163, 163);
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      height: 350px;
+      width: 200px;
+    }
+  
+    .d {
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      height: 70px;
+      width: 196px;
+    }
+  
+    .foto { height: 50px; }
+  
+    .uty { height: 30px; }
+  
+    p {
+      color: #000;
+      font-size: 15px;
+      font-weight: 490;
+    }
+  </style>
