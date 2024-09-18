@@ -1,0 +1,110 @@
+---
+---
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Inscribirte</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"/>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen bg-white">
+    <div class="flex flex-col justify-center items-center w-screen p-6 md:p-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl w-full">
+            <div>
+                <img class="w-full h-auto object-cover" src="../img/img_registro.png" alt="Imagen de registro"/>
+            </div>
+            <div class="bg-white p-6 md:p-10 rounded-lg shadow-lg">
+                <h2 class="mb-4 text-2xl font-bold text-center">Inscribirte</h2>
+                <form id="formu" class="space-y-4">
+                    <div>
+                        <label for="registroNombre" class="block text-sm font-medium text-gray-700"></label>
+                        <input
+                            type="text"
+                            name="nombre"
+                            id="registroNombre"
+                            placeholder="Nombres"
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 bg-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                        />
+                        <p id="nombreError" class="text-red-500 text-xs mt-1"></p>
+                    </div>
+                    <div>
+                        <label for="CorreoRegistro" class="block text-sm font-medium text-gray-700"></label>
+                        <input
+                            type="email"
+                            name="correo"
+                            id="CorreoRegistro"
+                            placeholder="Correo Electrónico"
+                            class="mt-1 block w-full px-4 py-2 border border-gray-300 bg-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                        />
+                        <p id="correoError" class="text-red-500 text-xs mt-1"></p>
+
+                        <div>
+                            <label for="numeroDc" class="block text-sm font-medium text-gray-700"></label>
+                            <input
+                                type="number"
+                                name="numeroDc"
+                                id="numeroDc"
+                                placeholder="Número de documento"
+                                class="mt-1 block w-full px-4 py-2 border border-gray-300 bg-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                            />
+                            <p id="numeroDcError" class="text-red-500 text-xs mt-1"></p>
+                    </div>
+                    <div>
+                        <label for="contrasenaRegistro" class="block text-sm font-medium text-gray-700"></label>
+                        <div class="relative">
+                            <input
+                                type="password"
+                                name="contrasena"
+                                id="contrasenaRegistro"
+                                placeholder="Contraseña"
+                                class="mt-1 block w-full px-4 py-2 border border-gray-300 bg-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                            />
+                            <span id="togglePasswordRegistro" class="absolute inset-y-0 right-3 flex items-center cursor-pointer bx bx-show"></span>
+                        </div>
+                        <p id="contrasenaError" class="text-red-500 text-xs mt-1"></p>
+                    </div>
+
+                    <div>
+                        <label for="confirmarContrasena" class="block text-sm font-medium text-gray-700"></label>
+                        <div class="relative">
+                            <input
+                                type="password"
+                                name="confirmarContrasena"
+                                id="confirmarContrasena"
+                                placeholder="Confirmar Contraseña"
+                                class="mt-1 block w-full px-4 py-2 border border-gray-300 bg-gray-200 rounded-md shadow-sm focus:outline-none focus:ring-green-500 focus:border-green-500 sm:text-sm"
+                            />
+                            <span id="togglePasswordConfirmacion" class="absolute inset-y-0 right-3 flex items-center cursor-pointer bx bx-show"></span>
+                        </div>
+                        <p id="confirmarContrasenaError" class="text-red-500 text-xs mt-1"></p>
+                    </div>
+                   
+                        
+                    </div>
+                    <div class="flex items-center">
+                        <input
+                            id="recordar"
+                            class="h-4 w-4 text-green-500 border-gray-300 rounded focus:ring-green-500"
+                            type="checkbox"
+                        />
+                        <label for="recordar" class="ml-2 block text-sm text-gray-700">Términos y condiciones</label>
+                    </div>
+                    <div class="flex flex-col items-center justify-center">
+                        <button
+                            type="submit"
+                            class="w-full px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none focus:ring-green-500 focus:ring-1 sm:w-44"
+                        >
+                            Registrarse
+                        </button>
+                        <u>
+                            <a href="inicio" class="mt-4 text-sm text-green-600 hover:text-green-700">Iniciar sesión</a>
+                        </u>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="../js/registro.js"></script>
+</body>
+</html>

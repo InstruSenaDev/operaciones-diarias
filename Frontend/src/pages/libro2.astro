@@ -1,0 +1,32 @@
+---
+// src/pages/index.astro
+import DailyOperationsLog from '../components/react/DailyOperationsLog.jsx';
+import Menu from '../components/menu.astro'; 
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Operaciones Diarias</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="w-full bg-green-500 p-4 flex justify-between items-center">
+        <script src="../js/fecha.js"></script>
+        <div class="text-white text-left"> 
+          Fecha: <span id="fecha-actual"></span>
+        </div>
+        
+      <button><img src="../img/perfil.png" class="w-20">Alexander</button>
+    </div>
+    <Menu/>
+    </body>
+
+
+<body>
+  <DailyOperationsLog />
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+---
+export interface Props {
+  href: string;
+  label: string;
+  icon?: string; // Optional icon class
+}
+
+const { href, label, icon } = Astro.props;
+---
+
+<li>
+  <a href={href} class="flex items-center p-2 text-gray-900 rounded-lg dark:text-black group">
+    <div>
+      <!-- Icon provided by slot or fallback icon -->
+      {icon ? <i class={icon + " flex-shrink-0 w-5 h-5 text-gray-500 dark:text-black"} aria-hidden="true"></i> :
+      <svg class="flex-shrink-0 w-5 h-5 text-gray-500 dark:text-black" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+        <!-- SVG path here -->
+      </svg>}
+    </div>
+    <span class="flex-1 ms-3 whitespace-nowrap">
+      {label}
+    </span>
+  </a>
+</li>

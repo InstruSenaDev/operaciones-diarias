@@ -1,0 +1,121 @@
+---
+const months = [
+  "ENERO", "FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO",
+  "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE", "NOVIEMBRE", "DICIEMBRE"
+];
+
+let data = months.map(() => ({
+  ingresos: 0,
+  compras: 0,
+  gastos: 0,
+  utilidad: 0,
+}));
+
+let totals = {
+  ingresos: 0,
+  compras: 0,
+  gastos: 0,
+  utilidad: 0,
+};
+
+const handleInputChange = (event, monthIndex, type) => {
+  const value = parseFloat(event.target.value) || 0;
+  data[monthIndex][type] = value;
+  data[monthIndex].utilidad = data[monthIndex].ingresos - (data[monthIndex].compras + data[monthIndex].gastos);
+  calculateTotals();
+};
+const calculateTotals = () => {
+  let totalIngresos = 0;
+  let totalCompras = 0;
+  let totalGastos = 0;
+  let totalUtilidad = 0;
+  let totalExpenses = 0; // Nueva variable para almacenar la suma.
+
+  data.forEach(monthData => {
+    totalIngresos += monthData.ingresos;
+    totalCompras += monthData.compras;
+    totalGastos += monthData.gastos;
+    totalUtilidad += monthData.utilidad;
+    totalExpenses = totalCompras + totalGastos; //Calcular la suma aquí
+  });
+
+  totals.ingresos = totalIngresos;
+  totals.compras = totalCompras;
+  totals.gastos = totalGastos;
+  totals.utilidad = totalUtilidad // Agregue el nuevo total al objeto de totales
+};
+
+---
+
+<html>
+  <body>
+    <div class="w-full bg-green-500 p-4 flex justify-between items-center">
+      <img src="../img/logo.png" class="w-10">
+      <button><img src="../img/perfil.png" class="w-20">Michel A.</button>
+    </div>
+    
+    <div class="p-4">
+      <div class="w-full max-w-2xl mx-auto bg-green-50 rounded-md overflow-hidden">
+        <div class="bg-green-500 text-white text-center py-2">
+          <h2 class="text-lg">Consolidado</h2>
+        </div>
+        <table class="w-full table-auto">
+          <thead class="bg-green-400 text-white">
+            <tr>
+              <th class="px-4 py-2 cabeza">MES</th>
+              <th class="px-4 py-2 cabeza">INGRESOS</th>
+              <th class="px-4 py-2 cabeza">COMPRAS</th>
+              <th class="px-4 py-2 cabeza">GASTOS</th>
+              <th class="px-4 py-2 cabeza">UTILIDAD</th>
+            </tr>
+          </thead>
+          <tbody>
+            {months.map((month, index) => (
+              <tr class="even:bg-green-100"></tr> 
+                <td class="border px-4 py-2 cuerpo">{month}</td>
+                <td class="border px-4 py-2 cuerpo">
+                  <input
+                    type="number"
+                    value=""
+                    class="monto ingresos bg-green-50 w-full p-2"
+                  />
+                </td>
+                <td class="border px-4 py-2 cuerpo">
+                  <input
+                    type="number"
+                    value=""
+                    class="monto compras bg-green-50 w-full p-2"
+                  />
+                </td>
+                <td class="border px-4 py-2 cuerpo">
+                  <input
+                    type="number"
+                    value=""
+                    class="monto gastos bg-green-50 w-full p-2"
+                  />
+                </td>
+                <td class="border px-4 py-2 cuerpo">
+                  <input
+                    type="number"
+                    value=""
+                    class="monto utilidad bg-green-50 w-full p-2"
+                  />
+                </td>
+            
+            ))}
+          </tbody>
+          <tfoot class="bg-green-400 text-white">
+            <tr>
+              <td class="px-4 py-2 cuerpo">TOTAL</td>
+              <td class="px-4 py-2 cuerpo">{totals.ingresos}</td>
+              <td class="px-4 py-2 cuerpo">{totals.compras}</td>
+              <td class="px-4 py-2 cuerpo">{totals.gastos}</td>
+              <td class="px-4 py-2 cuerpo">{totals.utilidad}</td>
+            </td>  
+          
+          </tr>
+          </tfoot>
+          
+        </table>
+      </div>
+    </div>

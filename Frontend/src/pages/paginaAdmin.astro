@@ -1,0 +1,203 @@
+---
+---
+
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administrador - LROD</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100">
+    <nav class="bg-green-500 p-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="text-white font-bold text-xl">LROD Admin</div>
+            <div>
+                <a href="#" class="text-white mr-4">Inicio</a>
+                <a href="#" class="text-white mr-4">Usuarios</a>
+                <a href="#" class="text-white">Configuración</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="bg-white shadow">
+        <div class="container mx-auto py-6 px-4">
+            <h1 class="text-3xl font-bold text-gray-900">Panel de Control</h1>
+        </div>
+    </header>
+
+    <main class="container mx-auto mt-6 px-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Tarjeta de Resumen (Editable) -->
+            <div class="bg-white p-6 rounded-lg shadow" id="summary-card">
+                <h2 class="text-xl font-semibold mb-4">Resumen de Operaciones</h2>
+                <p class="text-gray-600">Total de transacciones hoy: <span id="total-transactions" contenteditable="false">150</span></p>
+                <p class="text-gray-600">Ingresos del día: $<span id="daily-income" contenteditable="false">10,000</span></p>
+                <button onclick="toggleEdit('summary-card')" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">Editar</button>
+            </div>
+
+            <!-- Tarjeta de Usuarios (Editable) -->
+            <div class="bg-white p-6 rounded-lg shadow" id="users-card">
+                <h2 class="text-xl font-semibold mb-4">Usuarios Activos</h2>
+                <p class="text-gray-600">Total de usuarios: <span id="total-users" contenteditable="false">1,000</span></p>
+                <p class="text-gray-600">Nuevos hoy: <span id="new-users" contenteditable="false">25</span></p>
+                <button onclick="toggleEdit('users-card')" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">Editar</button>
+            </div>
+
+            <!-- Tarjeta de Alertas (Editable) -->
+            <div class="bg-white p-6 rounded-lg shadow" id="alerts-card">
+                <h2 class="text-xl font-semibold mb-4">Alertas</h2>
+                <p class="text-red-500"><span id="suspicious-transactions" contenteditable="false">2</span> transacciones sospechosas</p>
+                <p class="text-yellow-500"><span id="pending-verifications" contenteditable="false">5</span> usuarios pendientes de verificación</p>
+                <button onclick="toggleEdit('alerts-card')" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded">Editar</button>
+            </div>
+        </div>
+
+        <!-- Panel de Aprendices Registrados -->
+        <div class="mt-8 bg-white p-6 rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-4">Aprendices Registrados</h2>
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="py-2 px-4 border-b text-left">Nombre</th>
+                            <th class="py-2 px-4 border-b text-left">Email</th>
+                            <th class="py-2 px-4 border-b text-left">Curso</th>
+                            <th class="py-2 px-4 border-b text-left">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="apprentices-table-body">
+                        <!-- Los aprendices se cargarán aquí dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Formulario para registrar aprendices -->
+        <div class="mt-8 bg-white p-6 rounded-lg shadow">
+            <h2 class="text-xl font-semibold mb-4">Registrar Aprendiz</h2>
+            <form id="apprentice-form" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700">Nombre</label>
+                    <input type="text" id="name" name="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="email" name="email" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50">
+                </div>
+                <div>
+                    <label for="course" class="block text-sm font-medium text-gray-700">Curso</label>
+                    <select id="course" name="course" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-500 focus:ring-opacity-50">
+                        <option value="">Seleccione un curso</option>
+                        <option value="Frontend">Desarrollo Frontend</option>
+                        <option value="Backend">Desarrollo Backend</option>
+                        <option value="Full Stack">Desarrollo Full Stack</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50">
+                    Registrar Aprendiz
+                </button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="bg-green-500 text-white mt-12 py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 Libro De Operaciones Diarias. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        let apprentices = [
+            { id: 1, name: "Ana García", email: "ana@example.com", course: "Frontend" },
+            { id: 2, name: "Carlos López", email: "carlos@example.com", course: "Backend" },
+            { id: 3, name: "María Rodríguez", email: "maria@example.com", course: "Full Stack" }
+        ];
+
+        function loadApprentices() {
+            const tableBody = document.getElementById('apprentices-table-body');
+            tableBody.innerHTML = '';
+            apprentices.forEach(apprentice => {
+                const row = `
+                    <tr data-id="${apprentice.id}">
+                        <td class="py-2 px-4 border-b">${apprentice.name}</td>
+                        <td class="py-2 px-4 border-b">${apprentice.email}</td>
+                        <td class="py-2 px-4 border-b">${apprentice.course}</td>
+                        <td class="py-2 px-4 border-b">
+                            <button onclick="editApprentice(${apprentice.id})" class="bg-blue-500 text-white px-2 py-1 rounded hover:bg-blue-600">Editar</button>
+                            <button onclick="deleteApprentice(${apprentice.id})" class="bg-red-500 text-white px-2 py-1 rounded hover:bg-red-600 ml-2">Eliminar</button>
+                        </td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+        }
+
+        function editApprentice(id) {
+            const apprentice = apprentices.find(a => a.id === id);
+            if (apprentice) {
+                const row = document.querySelector(`tr[data-id="${id}"]`);
+                row.innerHTML = `
+                    <td class="py-2 px-4 border-b">
+                        <input type="text" value="${apprentice.name}" class="w-full border rounded px-2 py-1">
+                    </td>
+                    <td class="py-2 px-4 border-b">
+                        <input type="email" value="${apprentice.email}" class="w-full border rounded px-2 py-1">
+                    </td>
+                    <td class="py-2 px-4 border-b">
+                        <select class="w-full border rounded px-2 py-1">
+                            <option value="Frontend" ${apprentice.course === 'Frontend' ? 'selected' : ''}>Desarrollo Frontend</option>
+                            <option value="Backend" ${apprentice.course === 'Backend' ? 'selected' : ''}>Desarrollo Backend</option>
+                            <option value="Full Stack" ${apprentice.course === 'Full Stack' ? 'selected' : ''}>Desarrollo Full Stack</option>
+                        </select>
+                    </td>
+                    <td class="py-2 px-4 border-b">
+                        <button onclick="saveApprentice(${id})" class="bg-green-500 text-white px-2 py-1 rounded hover:bg-green-600">Guardar</button>
+                        <button onclick="cancelEdit(${id})" class="bg-gray-500 text-white px-2 py-1 rounded hover:bg-gray-600 ml-2">Cancelar</button>
+                    </td>
+                `;
+            }
+        }
+
+        function saveApprentice(id) {
+            const row = document.querySelector(`tr[data-id="${id}"]`);
+            const inputs = row.querySelectorAll('input, select');
+            const apprentice = apprentices.find(a => a.id === id);
+            
+            apprentice.name = inputs[0].value;
+            apprentice.email = inputs[1].value;
+            apprentice.course = inputs[2].value;
+            
+            loadApprentices();
+        }
+
+        function cancelEdit(id) {
+            loadApprentices();
+        }
+
+        function deleteApprentice(id) {
+            if (confirm("¿Estás seguro de que quieres eliminar este aprendiz?")) {
+                apprentices = apprentices.filter(a => a.id !== id);
+                loadApprentices();
+            }
+        }
+
+        document.getElementById('apprentice-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const formData = new FormData(this);
+            const newApprentice = {
+                id: apprentices.length > 0 ? Math.max(...apprentices.map(a => a.id)) + 1 : 1,
+                name: formData.get('name'),
+                email: formData.get('email'),
+                course: formData.get('course')
+            };
+            apprentices.push(newApprentice);
+            loadApprentices();
+            this.reset();
+            alert('Aprendiz registrado con éxito!');
+        });
+
+        window.onload = loadApprentices;
+    </script>
+</body>
+</html>
