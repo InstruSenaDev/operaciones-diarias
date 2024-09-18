@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
+
+
 const DailyOperationsLog = () => {
   const [operation, setOperation] = useState({
     fecha: '',
@@ -59,9 +61,10 @@ const DailyOperationsLog = () => {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
               <div>
-                <label className="block text-sm font-medium text-gray-700">Fecha</label>
+                <label htmlFor="fecha" className="block text-sm font-medium text-gray-700">Fecha</label>
                 <input
                   type="date"
+                  id="fecha"
                   name="fecha"
                   value={operation.fecha}
                   onChange={handleChange}
@@ -70,20 +73,30 @@ const DailyOperationsLog = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Tipo</label>
-                <input
-                  type="text"
-                  name="tipo"
-                  value={operation.tipo}
-                  onChange={handleChange}
-                  className="mt-1 p-2 w-full border rounded shadow-sm focus:ring focus:ring-blue-300"
-                  required
-                />
-              </div>
+  <label htmlFor="tipo" className="block text-sm font-medium text-gray-700">Tipo</label>
+  <select
+    id="tipo"
+    name="tipo"
+    value={operation.tipo}
+    onChange={handleChange}
+    className="mt-1 p-2 w-full border rounded shadow-sm focus:ring focus:ring-blue-300"
+    required
+  >
+    <option value="" disabled>Selecciona una opción</option>
+    <option value="INGRESO">INGRESO</option>
+    <option value="EGRESO">EGRESO</option>
+    <option value="COMPRA">COMPRA</option>
+    <option value="GASTOS">GASTOS</option>
+    <option value="VENTA">VENTA</option>
+    <option value="INGRESO_MENOR">INGRESO_MENOR</option>
+  </select>
+</div>
+
               <div className="sm:col-span-2">
-                <label className="block text-sm font-medium text-gray-700">Descripción</label>
+                <label htmlFor="descripcion" className="block text-sm font-medium text-gray-700">Descripción</label>
                 <input
                   type="text"
+                  id="descripcion"
                   name="descripcion"
                   value={operation.descripcion}
                   onChange={handleChange}
@@ -92,9 +105,10 @@ const DailyOperationsLog = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Monto</label>
+                <label htmlFor="monto" className="block text-sm font-medium text-gray-700">Monto</label>
                 <input
                   type="number"
+                  id="monto"
                   name="monto"
                   value={operation.monto}
                   onChange={handleChange}
@@ -103,9 +117,10 @@ const DailyOperationsLog = () => {
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700">Número de Recibo</label>
+                <label htmlFor="numeroRecibo" className="block text-sm font-medium text-gray-700">Número de Recibo</label>
                 <input
-                  type="text"
+                  type="numer"
+                  id="numeroRecibo"
                   name="numeroRecibo"
                   value={operation.numeroRecibo}
                   onChange={handleChange}
@@ -119,7 +134,7 @@ const DailyOperationsLog = () => {
           </form>
         </div>
       </div>
-
+  
       <div className="flex justify-center items-center p-6">
         <div className="w-full max-w-4xl bg-white p-6 rounded-lg shadow-md">
           <h2 className="text-2xl font-semibold mb-4 text-center">Operaciones Registradas</h2>
@@ -149,6 +164,7 @@ const DailyOperationsLog = () => {
       </div>
     </div>
   );
+  
 };
 
 export default DailyOperationsLog;

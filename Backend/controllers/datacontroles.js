@@ -1,7 +1,7 @@
-import { pool } from "../config/db.js";
+import { pool } from "../config/db.js"; 
 
-// Función para obtener todos los usuarios
-async function getAllUsuario() {
+// Obtener todos los usuarios
+async function getAllUsuarios() {
   try {
     const result = await pool.query("SELECT * FROM usuario");
     return result.rows;
@@ -11,11 +11,11 @@ async function getAllUsuario() {
   }
 }
 
-// Función para registrar un nuevo usuario
-async function register({ nombre, contraseña, documento, correo, rol }) {
+// Registrar un nuevo usuario
+async function registerUsuario({ nombre, contraseña, documento, correo, rol }) {
   try {
     const result = await pool.query(
-      "INSERT INTO usuario (nombre, contraseña, documento, correo, rol) VALUES($1, $2, $3, $4, $5) RETURNING *",
+      "INSERT INTO usuario (nombre, contraseña, documento, correo, rol) VALUES ($1, $2, $3, $4, $5) RETURNING *",
       [nombre, contraseña, documento, correo, rol]
     );
     return result.rows[0];
@@ -25,12 +25,10 @@ async function register({ nombre, contraseña, documento, correo, rol }) {
   }
 }
 
-// Función para obtener todas las operaciones
+// Obtener todas las operaciones
 async function getAllOperaciones() {
   try {
-    const result = await pool.query(
-      "SELECT * FROM operaciones ORDER BY fecha DESC"
-    );
+    const result = await pool.query("SELECT * FROM operaciones ORDER BY fecha DESC");
     return result.rows;
   } catch (error) {
     console.error("Error al obtener operaciones:", error);
@@ -38,17 +36,11 @@ async function getAllOperaciones() {
   }
 }
 
-// Función para registrar una nueva operación
-async function registerOperacion({
-  fecha,
-  tipo,
-  descripcion,
-  monto,
-  numeroRecibo,
-}) {
+// Registrar una nueva operación
+async function registerOperacion({ fecha, tipo, descripcion, monto, numeroRecibo }) {
   try {
     const result = await pool.query(
-      "INSERT INTO operaciones (fecha, tipo, descripcion, monto, numero_recibo) VALUES($1, $2, $3, $4, $5) RETURNING *",
+      "INSERT INTO operaciones (fecha, tipo, descripcion, monto, numero_recibo) VALUES ($1, $2, $3, $4, $5) RETURNING *",
       [fecha, tipo, descripcion, monto, numeroRecibo]
     );
     return result.rows[0];
@@ -58,4 +50,4 @@ async function registerOperacion({
   }
 }
 
-export { register, getAllUsuario, getAllOperaciones, registerOperacion };
+export { registerUsuario, getAllUsuarios, getAllOperaciones, registerOperacion };
