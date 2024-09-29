@@ -1,4 +1,4 @@
-import { pool } from "../config/db.js"; 
+import { pool } from "../config/db.js";
 
 // Obtener todos los usuarios
 async function getAllUsuarios() {
@@ -12,7 +12,7 @@ async function getAllUsuarios() {
 }
 
 // Registrar un nuevo usuario
-async function registerUsuario({ nombre, contraseña, documento, correo, rol }) {
+async function registrarUsuario({ nombre, contraseña, documento, correo, rol }) {
   try {
     const result = await pool.query(
       "INSERT INTO usuario (nombre, contraseña, documento, correo, rol) VALUES ($1, $2, $3, $4, $5) RETURNING *",
@@ -37,7 +37,7 @@ async function getAllOperaciones() {
 }
 
 // Registrar una nueva operación
-async function registerOperacion({ fecha, tipo, descripcion, monto, numeroRecibo }) {
+async function registrarOperacion({ fecha, tipo, descripcion, monto, numeroRecibo }) {
   try {
     const result = await pool.query(
       "INSERT INTO operaciones (fecha, tipo, descripcion, monto, numero_recibo) VALUES ($1, $2, $3, $4, $5) RETURNING *",
@@ -50,4 +50,4 @@ async function registerOperacion({ fecha, tipo, descripcion, monto, numeroRecibo
   }
 }
 
-export { registerUsuario, getAllUsuarios, getAllOperaciones, registerOperacion };
+export { registrarUsuario, getAllUsuarios, getAllOperaciones, registrarOperacion };

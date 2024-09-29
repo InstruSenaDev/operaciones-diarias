@@ -1,10 +1,10 @@
 import express from "express";
-import { registerUsuario, getAllUsuarios, getAllOperaciones, registerOperacion } from "../controllers/datacontroles.js";
+import { registrarUsuario, getAllUsuarios, getAllOperaciones, registrarOperacion } from "../controllers/datacontroles.js";
 
 const router = express.Router();
 
 // Ruta para obtener todos los usuarios
-router.get("/usuario", async (req, res) => {
+router.get("/usuarios", async (req, res) => {
   try {
     const usuarios = await getAllUsuarios();
     res.json(usuarios);
@@ -15,10 +15,10 @@ router.get("/usuario", async (req, res) => {
 });
 
 // Ruta para registrar un nuevo usuario
-router.post("/register", async (req, res) => {
+router.post("/usuario", async (req, res) => {
   const { nombre, contraseña, documento, correo, rol } = req.body;
   try {
-    const nuevoUsuario = await registerUsuario({ nombre, contraseña, documento, correo, rol });
+    const nuevoUsuario = await registrarUsuario({ nombre, contraseña, documento, correo, rol });
     res.json(nuevoUsuario);
   } catch (error) {
     console.error("Error al agregar usuario:", error);
@@ -41,7 +41,7 @@ router.get("/operaciones", async (req, res) => {
 router.post("/operaciones", async (req, res) => {
   const { fecha, tipo, descripcion, monto, numeroRecibo } = req.body;
   try {
-    const nuevaOperacion = await registerOperacion({ fecha, tipo, descripcion, monto, numeroRecibo });
+    const nuevaOperacion = await registrarOperacion({ fecha, tipo, descripcion, monto, numeroRecibo });
     res.json(nuevaOperacion);
   } catch (error) {
     console.error("Error al agregar operación:", error);
