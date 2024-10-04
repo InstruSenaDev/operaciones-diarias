@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 idrol: idrol
             });
 
-            // Enviar los datos al servidor si todo es valido
+            // Enviar los datos al servidor si todo es válido
             try {
                 const response = await fetch('/api/registro', { // URL completa al servidor backend
                     method: 'POST',
@@ -116,18 +116,27 @@ document.addEventListener('DOMContentLoaded', function() {
                         correo: correoValue,
                         contraseña: contrasenaValue,
                         Ndedocumento: numeroDcValue,
-                        idrol: idrol, // Usar la constante idrol
+                        idrol: idrol,
                     }),
                 });
 
-                const result = await response.json();
+                // Verificar si el response es JSON o HTML
+                const contentType = response.headers.get('content-type');
+                if (contentType && contentType.includes('application/json')) {
+                    const result = await response.json();
 
-                if (response.ok) {
-                    // Redirigir al usuario a la página de inicio después del registro exitoso
-                    window.location.href = '/inicio';
+                    if (response.ok) {
+                        // Redirigir al usuario a la página de inicio después del registro exitoso
+                        window.location.href = '/inicio';
+                    } else {
+                        console.error('Error en el registro:', result.error);
+                        alert('Error en el registro: ' + result.error);
+                    }
                 } else {
-                    console.error('Error en el registro:', result.error);
-                    alert('Error en el registro: ' + result.error);
+                    // No es JSON, posiblemente sea HTML
+                    const textResponse = await response.text();
+                    console.error('Respuesta no esperada (posiblemente HTML):', textResponse);
+                    alert('Error: La respuesta del servidor no es JSON.');
                 }
             } catch (error) {
                 console.error('Error al enviar la solicitud:', error);

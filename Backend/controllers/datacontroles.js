@@ -1,9 +1,9 @@
 import { pool } from "../config/db.js";
 
 // Obtener todos los usuarios
-async function getAllUsuarios() {
+async function getAllUsers() {
   try {
-    const result = await pool.query("SELECT * FROM usuario");
+    const result = await pool.query("SELECT * FROM usuario");  // Tabla 'usuario'
     return result.rows;
   } catch (error) {
     console.error("Error al obtener usuarios:", error);
@@ -12,7 +12,7 @@ async function getAllUsuarios() {
 }
 
 // Registrar un nuevo usuario
-async function registrarUsuario({ nombre, contraseña, documento, correo, rol }) {
+async function createUser({ nombre, contraseña, documento, correo, rol }) {
   try {
     const result = await pool.query(
       "INSERT INTO usuario (nombre, contraseña, documento, correo, rol) VALUES ($1, $2, $3, $4, $5) RETURNING *",
@@ -25,29 +25,29 @@ async function registrarUsuario({ nombre, contraseña, documento, correo, rol })
   }
 }
 
-// Obtener todas las operaciones
-async function getAllOperaciones() {
+// Obtener todos los registros del libro
+async function getAllRecords() {
   try {
-    const result = await pool.query("SELECT * FROM operaciones ORDER BY fecha DESC");
+    const result = await pool.query("SELECT * FROM libro ORDER BY fecha DESC");  // Tabla 'libro'
     return result.rows;
   } catch (error) {
-    console.error("Error al obtener operaciones:", error);
+    console.error("Error al obtener registros del libro:", error);
     throw error;
   }
 }
 
-// Registrar una nueva operación
-async function registrarOperacion({ fecha, tipo, descripcion, monto, numeroRecibo }) {
+// Registrar una nueva operación en el libro
+async function createRecord({ fecha, tipo, descripcion, monto, numeroRecibo }) {
   try {
     const result = await pool.query(
-      "INSERT INTO operaciones (fecha, tipo, descripcion, monto, numero_recibo) VALUES ($1, $2, $3, $4, $5) RETURNING *",
+      "INSERT INTO libro (fecha, tipo, descripcion, monto, numero_recibo) VALUES ($1, $2, $3, $4, $5) RETURNING *",
       [fecha, tipo, descripcion, monto, numeroRecibo]
     );
     return result.rows[0];
   } catch (error) {
-    console.error("Error al registrar operación:", error);
+    console.error("Error al registrar operación en el libro:", error);
     throw error;
   }
 }
 
-export { registrarUsuario, getAllUsuarios, getAllOperaciones, registrarOperacion };
+export { createUser, getAllUsers, getAllRecords, createRecord };
