@@ -3,7 +3,7 @@ const { Pool } = pkg;
 
 const pool = new Pool({
   user: "postgres.xuuhjaiygfzvkegeqwza",
-  host: "aws-0-sa-east-1.pooler.subabase.com",
+  host: "aws-0-sa-east-1.pooler.supabase.com",
   database: "postgres",
   password: "operacionesdiarias",
   port: "6543",

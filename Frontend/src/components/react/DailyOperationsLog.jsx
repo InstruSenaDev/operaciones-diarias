@@ -1,14 +1,14 @@
 import React from 'react';
 import useDailyOperations from '../../../hooks/useDailyOperations.js'; // Ajusta la ruta según la ubicación de tu hook
 
-const DailyOperationsLog = () => {
+const DailyOperationsLog = ({ idUsuario }) => {  // idUsuario se pasa como prop
   const {
     operation,
     operationsList,
     errors,
     handleChange,
     handleSubmit,
-  } = useDailyOperations();
+  } = useDailyOperations(idUsuario); // Ahora se pasa idUsuario al hook
 
   return (
     <div className="min-h-screen bg-gray-100">

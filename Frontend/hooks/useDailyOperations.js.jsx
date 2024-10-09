@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useDailyOperations = () => {
+const useDailyOperations = (idUsuario) => { // idUsuario se pasa como argumento
   const [operation, setOperation] = useState({
     fecha: '',
     tipo: '',
@@ -18,7 +18,7 @@ const useDailyOperations = () => {
 
   const fetchOperations = async () => {
     try {
-      const response = await fetch('/api/libro'); // Ruta ajustada a tu tabla 'libro'
+      const response = await fetch('/api/records'); // Ruta ajustada para obtener registros del libro
       const data = await response.json();
       setOperationsList(data);
     } catch (error) {
@@ -64,18 +64,26 @@ const useDailyOperations = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (!validate()) {
       return; // Si hay errores, no continúa
     }
 
+    if (!idUsuario) {
+      console.error("Error: El idUsuario no está disponible");
+      return; // Asegúrate de que el usuario esté logueado
+    }
+
     try {
-      const response = await fetch('/api/libro', { // Ruta ajustada a tu tabla 'libro'
+      const response = await fetch('/api/records', { // Ruta ajustada para registrar operación en el libro
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(operation),
+        body: JSON.stringify({
+          ...operation,
+          idUsuario, // Incluyendo el idUsuario en la solicitud
+        }),
       });
 
       if (response.ok) {
