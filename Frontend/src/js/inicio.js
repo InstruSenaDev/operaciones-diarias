@@ -1,3 +1,45 @@
+const loginForm = document.getElementById('loginForm');
+const usuarioInput = document.getElementById('usuario');
+const contrasenaInput = document.getElementById('contrasena');
+const usuarioError = document.getElementById('usuarioError');
+const contrasenaError = document.getElementById('contrasenaError');
+const loginError = document.getElementById('loginError');
+
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  let isValid = true;
+
+  // Resetear mensajes de error
+  usuarioError.classList.add('hidden');
+  contrasenaError.classList.add('hidden');
+  loginError.classList.add('hidden');
+
+  // Validar correo electrónico
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!usuarioInput.value || !emailPattern.test(usuarioInput.value)) {
+    usuarioError.classList.remove('hidden');
+    isValid = false;
+  }
+
+  // Validar contraseña
+  if (contrasenaInput.value.length < 8) {
+    contrasenaError.classList.remove('hidden');
+    isValid = false;
+  }
+
+  // Aquí podrías validar la contraseña contra una base de datos o una lista de contraseñas válidas
+  const validPassword = "contraseñaCorrecta"; // Cambia esto a la contraseña válida
+
+  if (isValid) {
+    if (contrasenaInput.value !== validPassword) {
+      loginError.classList.remove('hidden');
+    } else {
+      // Lógica para iniciar sesión
+      alert("Inicio de sesión exitoso");
+    }
+  }
+});
 
       document
         .getElementById("loginForm")

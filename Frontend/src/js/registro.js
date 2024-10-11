@@ -19,19 +19,15 @@ document.addEventListener('DOMContentLoaded', function() {
     // Función para mostrar u ocultar la contraseña
     if (togglePasswordRegistro) {
         togglePasswordRegistro.addEventListener('click', function() {
-            if (contrasenaRegistro) {
-                const type = contrasenaRegistro.getAttribute('type') === 'password' ? 'text' : 'password';
-                contrasenaRegistro.setAttribute('type', type);
-            }
+            const type = contrasenaRegistro.getAttribute('type') === 'password' ? 'text' : 'password';
+            contrasenaRegistro.setAttribute('type', type);
         });
     }
 
     if (togglePasswordConfirmacion) {
         togglePasswordConfirmacion.addEventListener('click', function() {
-            if (confirmarContrasena) {
-                const type = confirmarContrasena.getAttribute('type') === 'password' ? 'text' : 'password';
-                confirmarContrasena.setAttribute('type', type);
-            }
+            const type = confirmarContrasena.getAttribute('type') === 'password' ? 'text' : 'password';
+            confirmarContrasena.setAttribute('type', type);
         });
     }
 
@@ -42,54 +38,54 @@ document.addEventListener('DOMContentLoaded', function() {
             let valid = true;
 
             // Limpiar mensajes de error
-            if (nombreError) nombreError.textContent = '';
-            if (correoError) correoError.textContent = '';
-            if (contrasenaError) contrasenaError.textContent = '';
-            if (confirmarContrasenaError) confirmarContrasenaError.textContent = '';
-            if (numeroDcError) numeroDcError.textContent = '';
+            nombreError.textContent = '';
+            correoError.textContent = '';
+            contrasenaError.textContent = '';
+            confirmarContrasenaError.textContent = '';
+            numeroDcError.textContent = '';
 
             // Validación del nombre
-            const nombreValue = nombre ? nombre.value.trim() : '';
+            const nombreValue = nombre.value.trim();
             if (!nombreValue) {
                 valid = false;
-                if (nombreError) nombreError.textContent = 'Ingrese un nombre válido.';
+                nombreError.textContent = 'Ingrese un nombre válido.';
             }
 
             // Validación del correo electrónico
-            const correoValue = correoRegistro ? correoRegistro.value.trim() : '';
+            const correoValue = correoRegistro.value.trim();
             if (!correoValue) {
                 valid = false;
-                if (correoError) correoError.textContent = 'El correo electrónico es requerido.';
+                correoError.textContent = 'El correo electrónico es requerido.';
             } else if (!/\S+@\S+\.\S+/.test(correoValue)) {
                 valid = false;
-                if (correoError) correoError.textContent = 'El correo electrónico debe tener formato válido.';
+                correoError.textContent = 'El correo electrónico debe tener formato válido.';
             }
 
             // Validación de la contraseña
-            const contrasenaValue = contrasenaRegistro ? contrasenaRegistro.value : '';
+            const contrasenaValue = contrasenaRegistro.value;
             if (!contrasenaValue || contrasenaValue.length < 8 || !/[A-Z]/.test(contrasenaValue)) {
                 valid = false;
                 if (!contrasenaValue) {
-                    if (contrasenaError) contrasenaError.textContent = 'La contraseña es requerida.';
+                    contrasenaError.textContent = 'La contraseña es requerida.';
                 } else if (contrasenaValue.length < 8) {
-                    if (contrasenaError) contrasenaError.textContent = 'La contraseña debe tener al menos 8 caracteres.';
+                    contrasenaError.textContent = 'La contraseña debe tener al menos 8 caracteres.';
                 } else if (!/[A-Z]/.test(contrasenaValue)) {
-                    if (contrasenaError) contrasenaError.textContent = 'La contraseña debe contener al menos una letra mayúscula.';
+                    contrasenaError.textContent = 'La contraseña debe contener al menos una letra mayúscula.';
                 }
             }
 
             // Validación de la confirmación de contraseña
-            const confirmarContrasenaValue = confirmarContrasena ? confirmarContrasena.value : '';
+            const confirmarContrasenaValue = confirmarContrasena.value;
             if (contrasenaValue !== confirmarContrasenaValue) {
                 valid = false;
-                if (confirmarContrasenaError) confirmarContrasenaError.textContent = 'Las contraseñas no coinciden.';
+                confirmarContrasenaError.textContent = 'Las contraseñas no coinciden.';
             }
 
             // Validación del número de documento
-            const numeroDcValue = numeroDc ? numeroDc.value.trim() : '';
+            const numeroDcValue = numeroDc.value.trim();
             if (!numeroDcValue || isNaN(parseInt(numeroDcValue)) || numeroDcValue.length !== 10) {
                 valid = false;
-                if (numeroDcError) numeroDcError.textContent = 'Ingrese un número de documento válido de 10 dígitos.';
+                numeroDcError.textContent = 'Ingrese un número de documento válido de 10 dígitos.';
             }
 
             if (!valid) {
@@ -120,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }),
                 });
 
-                // Verificar si el response es JSON o HTML
+                // Verificar si el response es JSON
                 const contentType = response.headers.get('content-type');
                 if (contentType && contentType.includes('application/json')) {
                     const result = await response.json();
